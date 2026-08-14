@@ -1,3 +1,59 @@
-@use "./variables.scss" as *;
+﻿@use "./variables.scss" as *;
 
-// put your custom CSS here!
+// 1. 사이드바 너비 확장 (답답함 해소)
+.sidebar.left {
+  width: 320px !important;
+  min-width: 290px !important;
+}
+
+// 2. Explorer(탐색기) 트리 스타일 정밀 튜닝
+.explorer {
+  font-size: 0.88rem;
+
+  .folder-container {
+    padding-left: 0.4rem !important;
+  }
+
+  ul {
+    border-left: 1px solid var(--lightgray) !important;
+    margin-left: 0.4rem !important;
+    padding-left: 0.6rem !important;
+  }
+
+  li {
+    margin: 0.25rem 0 !important;
+    line-height: 1.45 !important;
+  }
+
+  a {
+    color: var(--darkgray) !important;
+    transition: all 0.15s ease;
+    word-break: keep-all !important;
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+
+    &:hover {
+      color: var(--dark) !important;
+      background-color: var(--highlight) !important;
+      font-weight: 600;
+    }
+  }
+
+  // 현재 열린 페이지 하이라이트
+  li > a[aria-current="page"] {
+    color: var(--dark) !important;
+    background-color: var(--highlight) !important;
+    font-weight: 600;
+  }
+}
+
+// 3. 본문 텍스트 가독성 강화
+article {
+  line-height: 1.75 !important;
+  font-size: 1.02rem !important;
+  letter-spacing: -0.01em;
+
+  h1, h2, h3 {
+    letter-spacing: -0.025em;
+  }
+}
