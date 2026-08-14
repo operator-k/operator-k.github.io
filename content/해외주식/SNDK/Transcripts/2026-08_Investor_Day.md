@@ -1,10 +1,13 @@
 ﻿---
-title: 샌디스크(SNDK) 2026 인베스터 데이 트랜스크립트 (전문 번역)
+title: Investor Day 2026
 date: 2026-08-14
+ticker: SNDK
+company: SanDisk Corporation
+event: Investor Day 2026
 tags:
   - transcripts
   - ticker/SNDK
-  - investment/memory
+  - event/investor-day
 ---
 샌디스크(SanDisk Corporation) 2026 인베스터 데이 트랜스크립트 (한글 전문 번역)
 
