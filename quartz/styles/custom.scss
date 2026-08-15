@@ -1,4 +1,4 @@
-﻿@use "./variables.scss" as *;
+@use "./variables.scss" as *;
 
 // 1. 사이드바 너비 확장 (답답함 해소)
 .sidebar.left {
@@ -57,3 +57,124 @@ article {
     letter-spacing: -0.025em;
   }
 }
+
+// 4. PageList / 폴더 및 태그 목록 뷰 정렬 & 디자인 완벽 픽스
+ul.section-ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 1.5rem 0 !important;
+
+  li.section-li {
+    list-style: none !important;
+    padding: 0.75rem 0 !important;
+    margin: 0 !important;
+    border-bottom: 1px solid var(--lightgray);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &::before,
+    &::marker {
+      content: none !important;
+      display: none !important;
+    }
+  }
+}
+
+.section {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 1.25rem !important;
+  width: 100% !important;
+
+  @media all and ($mobile) {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+  }
+
+  .meta {
+    margin: 0 !important;
+    min-width: 100px !important;
+    flex-shrink: 0 !important;
+    font-size: 0.85rem !important;
+    color: var(--gray) !important;
+    white-space: nowrap !important;
+    line-height: 1.4 !important;
+  }
+
+  .desc {
+    margin: 0 !important;
+    flex-grow: 1 !important;
+    flex-shrink: 1 !important;
+
+    h3 {
+      margin: 0 !important;
+      font-size: 1.05rem !important;
+      line-height: 1.4 !important;
+
+      a.internal {
+        background-color: transparent !important;
+        padding: 0 !important;
+        font-weight: 600 !important;
+        color: var(--dark) !important;
+
+        &:hover {
+          color: var(--secondary) !important;
+        }
+      }
+    }
+  }
+
+  ul.tags {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0.35rem 0.5rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    flex-shrink: 0 !important;
+
+    @media all and ($mobile) {
+      justify-content: flex-start !important;
+    }
+
+    li {
+      display: inline-flex !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+
+      &::before,
+      &::marker {
+        content: none !important;
+        display: none !important;
+      }
+    }
+
+    a.tag-link,
+    a.internal.tag-link {
+      display: inline-block !important;
+      white-space: nowrap !important;
+      font-size: 0.78rem !important;
+      line-height: 1.35 !important;
+      padding: 0.2rem 0.55rem !important;
+      border-radius: 6px !important;
+      background-color: var(--highlight) !important;
+      color: var(--secondary) !important;
+      transition: background-color 0.15s ease, color 0.15s ease;
+
+      &:hover {
+        background-color: var(--lightgray) !important;
+        color: var(--tertiary) !important;
+      }
+    }
+  }
+}
+
