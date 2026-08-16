@@ -47,45 +47,39 @@
   }
 }
 
-// 3. 본문 텍스트 가독성 및 모바일 타이포그래피 강화
+// 3. 본문 텍스트 가독성 및 타이포그래피 강화 (좌측 정렬 & 한글 단어 보존 줄바꿈)
 article {
   line-height: 1.78 !important;
   font-size: 1.02rem !important;
   letter-spacing: -0.015em;
-  word-break: break-all;
-  text-wrap: wrap !important;
+
+  p, li, blockquote {
+    text-align: left !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    margin-bottom: 1.15rem;
+  }
 
   h1, h2, h3, h4 {
     letter-spacing: -0.025em;
-    word-break: keep-all; // 제목류는 단어 단위로 자연스럽게 줄바꿈
+    text-align: left !important;
+    word-break: keep-all !important;
   }
 
-  p {
-    margin-bottom: 1.15rem;
-    word-break: break-all !important;
-    overflow-wrap: anywhere !important;
-    text-wrap: wrap !important; // base의 text-wrap: pretty로 인한 조기 줄바꿈 방지
-  }
-
-  // 모바일 화면 반응형 최적화 (우측 들쭉날쭉 여백 완벽 해결)
   @media all and ($mobile) {
     font-size: 0.98rem !important;
     line-height: 1.72 !important;
 
-    p {
-      word-break: break-all !important;
-      text-wrap: wrap !important;
-      text-align: justify !important; // 양쪽 정렬로 우측 여백을 반듯하게 정렬
-      text-justify: inter-character;
-      margin-bottom: 1.25rem !important;
-    }
-
-    li {
-      word-break: break-all !important;
-      text-wrap: wrap !important;
+    p, li, blockquote {
+      text-align: left !important;
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+      margin-bottom: 1.15rem !important;
     }
   }
 }
+
+
 
 // 4. PageList / 폴더 및 태그 목록 뷰 정렬 & 디자인 완벽 픽스
 ul.section-ul {
