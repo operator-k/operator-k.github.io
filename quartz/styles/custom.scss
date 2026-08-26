@@ -175,9 +175,6 @@ article {
       height: 34px !important;
       padding: 0 !important;
       border-radius: 6px !important;
-      border: 1px solid var(--lightgray) !important;
-      background-color: var(--light) !important;
-      color: var(--darkgray) !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -187,13 +184,6 @@ article {
       svg {
         width: 18px !important;
         height: 18px !important;
-        fill: var(--darkgray) !important;
-        stroke: var(--darkgray) !important;
-
-        path {
-          fill: var(--darkgray) !important;
-          stroke: var(--darkgray) !important;
-        }
       }
     }
 
@@ -207,9 +197,6 @@ article {
         padding: 0 0.65rem !important;
         font-size: 0.82rem !important;
         border-radius: 6px !important;
-        border: 1px solid var(--lightgray) !important;
-        background-color: var(--light) !important;
-        color: var(--darkgray) !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -220,14 +207,12 @@ article {
         svg {
           width: 14px !important;
           height: 14px !important;
-          stroke: var(--darkgray) !important;
           fill: none !important;
         }
 
         p {
           margin: 0 !important;
           font-size: 0.82rem !important;
-          color: var(--darkgray) !important;
         }
       }
     }
@@ -238,9 +223,6 @@ article {
       height: 34px !important;
       padding: 0 !important;
       border-radius: 6px !important;
-      border: 1px solid var(--lightgray) !important;
-      background-color: var(--light) !important;
-      color: var(--darkgray) !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -250,13 +232,6 @@ article {
       svg {
         width: 18px !important;
         height: 18px !important;
-        fill: var(--darkgray) !important;
-        stroke: var(--darkgray) !important;
-
-        path {
-          fill: var(--darkgray) !important;
-          stroke: var(--darkgray) !important;
-        }
       }
     }
   }
@@ -277,35 +252,95 @@ article {
   }
 }
 
-// 다크모드/라이트모드 아이콘 노출 규칙
-.darkmode {
+// =========================================================================
+// 다크모드/라이트모드 버튼 & 아이콘 선명도 완벽 보장
+// =========================================================================
+
+// 기본 (라이트 모드)
+button.darkmode {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+
   .dayIcon {
     display: none !important;
   }
   .nightIcon {
     display: block !important;
+    fill: #111827 !important;
+    stroke: none !important;
+    path {
+      fill: #111827 !important;
+      stroke: none !important;
+    }
   }
 }
 
-:root[saved-theme="dark"] .darkmode,
-html[saved-theme="dark"] .darkmode,
-[saved-theme="dark"] .darkmode {
-  .dayIcon {
-    display: block !important;
-  }
-  .nightIcon {
-    display: none !important;
+button.readermode {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+
+  svg, svg path {
+    fill: #111827 !important;
+    stroke: none !important;
   }
 }
 
-:root[saved-theme="light"] .darkmode,
-html[saved-theme="light"] .darkmode,
-[saved-theme="light"] .darkmode {
-  .dayIcon {
-    display: none !important;
+.search button.search-button {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #111827 !important;
+
+  svg {
+    stroke: #111827 !important;
   }
-  .nightIcon {
-    display: block !important;
+  p {
+    color: #111827 !important;
+  }
+}
+
+// 다크 모드 활성화 시
+:root[saved-theme="dark"],
+html[saved-theme="dark"],
+body.theme-dark {
+  button.darkmode {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+
+    .dayIcon {
+      display: block !important;
+      fill: #fbbf24 !important;
+      stroke: none !important;
+      path {
+        fill: #fbbf24 !important;
+        stroke: none !important;
+      }
+    }
+    .nightIcon {
+      display: none !important;
+    }
+  }
+
+  button.readermode {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+
+    svg, svg path {
+      fill: #f0f6fc !important;
+      stroke: none !important;
+    }
+  }
+
+  .search button.search-button {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+    color: #f0f6fc !important;
+
+    svg {
+      stroke: #f0f6fc !important;
+    }
+    p {
+      color: #f0f6fc !important;
+    }
   }
 }
 
