@@ -1,5 +1,5 @@
 ---
-title: Q1 2026 Earnings Call
+title: PDD Q1 2026 Earnings Call
 date: 2026-08-25
 ticker: PDD
 company: PDD Holdings Inc.

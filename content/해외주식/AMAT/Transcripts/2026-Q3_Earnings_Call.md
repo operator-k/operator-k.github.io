@@ -1,5 +1,5 @@
 ---
-title: Q3 2026 Earnings Call
+title: AMAT Q3 2026 Earnings Call
 date: 2026-08-14
 ticker: AMAT
 company: Applied Materials, Inc.

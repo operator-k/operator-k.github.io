@@ -1,5 +1,5 @@
 ---
-title: Q2 2026 Earnings Call
+title: META Q2 2026 Earnings Call
 date: 2026-07-30
 ticker: META
 company: Meta Platforms, Inc.

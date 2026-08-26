@@ -228,41 +228,49 @@ ul.section-ul {
   }
 }
 
-// 8. Recent Notes (최근 글 목록) 깔끔한 가로 1열 정렬 & 볼드체 전면 제거
+// 8. Recent Notes (최근 글 목록) 데스크탑 1열 정렬 & 모바일 바이사이드 카드 뷰 완벽 대응
 .recent-notes {
   margin-top: 2.5rem !important;
   margin-bottom: 2rem !important;
+  text-align: left !important;
 
   > h3 {
-    font-size: 1.2rem !important;
+    font-size: 1.15rem !important;
     font-weight: 600 !important;
     color: var(--dark) !important;
     letter-spacing: -0.02em !important;
     margin-bottom: 1rem !important;
     padding-bottom: 0.5rem !important;
     border-bottom: 1px solid var(--lightgray) !important;
+    text-align: left !important;
   }
 
   .recent-ul {
     list-style: none !important;
     padding-left: 0 !important;
     margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
   }
 
   .recent-li {
     list-style: none !important;
     margin: 0 !important;
-    padding: 0.75rem 0.5rem !important;
-    border-bottom: 1px dashed var(--lightgray) !important;
-    border-radius: 6px;
-    transition: background-color 0.15s ease;
-
-    &:last-child {
-      border-bottom: none !important;
-    }
+    padding: 0.75rem 0.85rem !important;
+    border: 1px solid var(--lightgray) !important;
+    background-color: var(--highlight) !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease;
+    text-align: left !important;
 
     &:hover {
-      background-color: var(--highlight) !important;
+      border-color: var(--gray) !important;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.99);
     }
   }
 
@@ -271,25 +279,41 @@ ul.section-ul {
     justify-content: space-between !important;
     align-items: center !important;
     width: 100% !important;
-    gap: 1.5rem !important;
+    text-align: left !important;
+    gap: 1.25rem !important;
+
+    @media all and ($mobile) {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+      gap: 0.25rem !important;
+    }
   }
 
   .desc {
     flex: 1 1 auto !important;
     margin: 0 !important;
     min-width: 0 !important;
+    text-align: left !important;
+
+    @media all and ($mobile) {
+      width: 100% !important;
+    }
 
     h3 {
       margin: 0 !important;
-      font-size: 1.0rem !important;
-      font-weight: 400 !important;
+      font-size: 0.98rem !important;
+      font-weight: 600 !important;
       line-height: 1.45 !important;
       letter-spacing: -0.01em !important;
+      text-align: left !important;
 
       a {
         color: var(--dark) !important;
-        font-weight: 400 !important;
+        font-weight: 600 !important;
         text-decoration: none !important;
+        text-align: left !important;
+        display: inline-block !important;
 
         &:hover {
           color: var(--secondary) !important;
@@ -305,12 +329,19 @@ ul.section-ul {
     text-align: right !important;
     white-space: nowrap !important;
 
+    @media all and ($mobile) {
+      width: 100% !important;
+      text-align: left !important;
+    }
+
     time {
-      font-size: 0.88rem !important;
+      font-size: 0.82rem !important;
       color: var(--gray) !important;
       font-weight: 400 !important;
+      text-align: left !important;
     }
   }
 }
+
 
 

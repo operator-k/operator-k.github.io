@@ -1,5 +1,5 @@
 ---
-title: Q2 2026 Earnings Call
+title: ABNB Q2 2026 Earnings Call
 date: 2026-08-15
 ticker: ABNB
 company: Airbnb, Inc.

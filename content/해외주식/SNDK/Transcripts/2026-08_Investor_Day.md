@@ -1,5 +1,5 @@
-﻿---
-title: Investor Day 2026
+---
+title: SNDK Investor Day 2026
 date: 2026-08-14
 ticker: SNDK
 company: SanDisk Corporation

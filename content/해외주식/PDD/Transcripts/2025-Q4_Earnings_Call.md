@@ -1,5 +1,5 @@
 ---
-title: Q4 2025 Earnings Call
+title: PDD Q4 2025 Earnings Call
 date: 2026-08-25
 ticker: PDD
 company: PDD Holdings Inc.
