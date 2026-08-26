@@ -1,5 +1,22 @@
 @use "./variables.scss" as *;
 
+// 0. 전체 배경색 일관성 통일 (라이트/다크 모드 스크롤 시 100vh 색상 분리 및 하단 끊김 완벽 해결)
+html,
+body,
+#quartz-root,
+#quartz-body,
+.page,
+.center,
+article,
+.sidebar,
+.sidebar.left,
+.sidebar.right,
+.page-header,
+.page-footer,
+footer {
+  background-color: var(--light) !important;
+}
+
 // 1. 사이드바 너비 확장 (데스크탑 전용 및 모바일 상단 네비게이션 바로 최적화)
 @media all and not ($mobile) {
   .sidebar.left {
