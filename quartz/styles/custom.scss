@@ -101,10 +101,36 @@ footer {
         flex-grow: 0 !important;
         flex-shrink: 0 !important;
         flex-basis: auto !important;
+        display: flex !important;
+        align-items: center !important;
       }
     }
 
+    // 1순위: 다크모드 버튼 (검색창 왼쪽)
+    button.darkmode {
+      order: 1 !important;
+      width: 34px !important;
+      height: 34px !important;
+      padding: 0 !important;
+      border-radius: 6px !important;
+      border: 1px solid var(--lightgray) !important;
+      background-color: var(--light) !important;
+      color: var(--dark) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+
+      svg {
+        width: 17px !important;
+        height: 17px !important;
+      }
+    }
+
+    // 2순위: 검색창 (다크모드 오른쪽)
     .search {
+      order: 2 !important;
       margin: 0 !important;
       flex-shrink: 0 !important;
 
@@ -138,8 +164,9 @@ footer {
       }
     }
 
-    button.darkmode,
+    // 3순위: 리더모드 버튼
     button.readermode {
+      order: 3 !important;
       width: 34px !important;
       height: 34px !important;
       padding: 0 !important;
@@ -156,60 +183,88 @@ footer {
       svg {
         width: 17px !important;
         height: 17px !important;
-        fill: var(--dark) !important;
       }
     }
   }
 }
 
-// 다크모드/라이트모드 아이콘 토글 및 선명도 보장
+// =========================================================================
+// 다크모드/라이트모드 아이콘 토글 및 완벽한 선명도 보장 (기본: 라이트 / 다크 활성화)
+// =========================================================================
+
+// 기본 상태 (라이트 모드 기본값: 어두운 달 아이콘 100% 노출)
+.darkmode {
+  .dayIcon {
+    display: none !important;
+  }
+  .nightIcon {
+    display: block !important;
+    fill: #111827 !important;
+    stroke: none !important;
+    * {
+      fill: #111827 !important;
+      stroke: none !important;
+    }
+  }
+}
+
+.readermode {
+  svg, svg * {
+    fill: #111827 !important;
+    stroke: none !important;
+  }
+}
+
+// 다크 모드 활성화 시 (밝은 해 아이콘 100% 노출)
+:root[saved-theme="dark"],
+html[saved-theme="dark"],
 [saved-theme="dark"] {
   .darkmode {
     .dayIcon {
-      display: inline-block !important;
+      display: block !important;
       fill: #f0f6fc !important;
-      path {
+      stroke: none !important;
+      * {
         fill: #f0f6fc !important;
+        stroke: none !important;
       }
     }
     .nightIcon {
       display: none !important;
     }
   }
-  .readermode svg,
-  .readermode svg path {
-    fill: #f0f6fc !important;
+  .readermode {
+    svg, svg * {
+      fill: #f0f6fc !important;
+      stroke: none !important;
+    }
   }
 }
 
+// 라이트 모드 명시적 활성화 시
+:root[saved-theme="light"],
+html[saved-theme="light"],
 [saved-theme="light"] {
   .darkmode {
     .dayIcon {
       display: none !important;
     }
     .nightIcon {
-      display: inline-block !important;
+      display: block !important;
       fill: #111827 !important;
-      path {
+      stroke: none !important;
+      * {
         fill: #111827 !important;
+        stroke: none !important;
       }
     }
   }
-  .readermode svg,
-  .readermode svg path {
-    fill: #111827 !important;
+  .readermode {
+    svg, svg * {
+      fill: #111827 !important;
+      stroke: none !important;
+    }
   }
-}
-
-// 기본 다크모드/리더모드 버튼 SVG fill fallback
-.darkmode svg,
-.darkmode svg path {
-  fill: var(--dark) !important;
-}
-
-.readermode svg,
-.readermode svg path {
-  fill: var(--dark) !important;
 }
 
 // 2. Explorer(탐색기) 트리 스타일 정밀 튜닝

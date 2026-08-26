@@ -204,7 +204,7 @@ plugins:
     enabled: true
     layout:
       position: left
-      priority: 30
+      priority: 15
       group: toolbar
   - source: "@quartz-community/reader-mode"
     enabled: true
