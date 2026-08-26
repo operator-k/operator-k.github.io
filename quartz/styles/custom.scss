@@ -127,28 +127,6 @@ article {
       display: flex !important;
       align-items: center !important;
       flex-shrink: 0 !important;
-
-      .mobile-explorer {
-        width: 34px !important;
-        height: 34px !important;
-        padding: 0 !important;
-        border-radius: 6px !important;
-        border: 1px solid var(--lightgray) !important;
-        background-color: var(--light) !important;
-        color: var(--darkgray) !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-        flex-shrink: 0 !important;
-
-        svg {
-          width: 18px !important;
-          height: 18px !important;
-          stroke: var(--darkgray) !important;
-          fill: none !important;
-        }
-      }
     }
 
     .flex-component {
@@ -166,72 +144,6 @@ article {
         flex: 0 0 auto !important;
         display: flex !important;
         align-items: center !important;
-      }
-    }
-
-    button.darkmode {
-      order: 1 !important;
-      width: 34px !important;
-      height: 34px !important;
-      padding: 0 !important;
-      border-radius: 6px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
-      cursor: pointer !important;
-
-      svg {
-        width: 18px !important;
-        height: 18px !important;
-      }
-    }
-
-    .search {
-      order: 2 !important;
-      margin: 0 !important;
-      flex-shrink: 0 !important;
-
-      button.search-button {
-        height: 34px !important;
-        padding: 0 0.65rem !important;
-        font-size: 0.82rem !important;
-        border-radius: 6px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 0.35rem !important;
-        cursor: pointer !important;
-        white-space: nowrap !important;
-
-        svg {
-          width: 14px !important;
-          height: 14px !important;
-          fill: none !important;
-        }
-
-        p {
-          margin: 0 !important;
-          font-size: 0.82rem !important;
-        }
-      }
-    }
-
-    button.readermode {
-      order: 3 !important;
-      width: 34px !important;
-      height: 34px !important;
-      padding: 0 !important;
-      border-radius: 6px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
-      cursor: pointer !important;
-
-      svg {
-        width: 18px !important;
-        height: 18px !important;
       }
     }
   }
@@ -253,94 +165,139 @@ article {
 }
 
 // =========================================================================
-// 다크모드/라이트모드 버튼 & 아이콘 선명도 완벽 보장
+// 상단 네비게이션 버튼 (탐색기/다크모드/검색/리더모드) 완벽 디자인 및 100% 선명도
 // =========================================================================
 
-// 기본 (라이트 모드)
-button.darkmode {
-  background-color: #ffffff !important;
-  border: 1px solid #d1d5db !important;
+// 공통 버튼 크기 및 터치 영역
+.sidebar.left .mobile-explorer,
+button.darkmode,
+button.readermode,
+.search button.search-button {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
 
-  .dayIcon {
-    display: none !important;
-  }
-  .nightIcon {
+  svg {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
     display: block !important;
-    fill: #111827 !important;
-    stroke: none !important;
-    path {
-      fill: #111827 !important;
-      stroke: none !important;
-    }
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
-button.readermode {
-  background-color: #ffffff !important;
-  border: 1px solid #d1d5db !important;
+.sidebar.left .search button.search-button {
+  width: auto !important;
+  min-width: auto !important;
+  height: 36px !important;
+  padding: 0 0.75rem !important;
+  gap: 0.35rem !important;
 
-  svg, svg path {
-    fill: #111827 !important;
-    stroke: none !important;
+  svg {
+    width: 14px !important;
+    height: 14px !important;
   }
 }
 
+// 1. 라이트 모드 (기본값)
+button.darkmode,
+button.readermode,
+.sidebar.left .mobile-explorer,
 .search button.search-button {
   background-color: #ffffff !important;
   border: 1px solid #d1d5db !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
   color: #111827 !important;
 
-  svg {
-    stroke: #111827 !important;
-  }
   p {
     color: #111827 !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+  }
+
+  svg {
+    fill: #111827 !important;
+    stroke: #111827 !important;
+
+    * {
+      fill: #111827 !important;
+      stroke: #111827 !important;
+    }
+    line, polyline {
+      fill: none !important;
+      stroke: #111827 !important;
+      stroke-width: 2.2 !important;
+    }
   }
 }
 
-// 다크 모드 활성화 시
+.search button.search-button svg,
+.search button.search-button svg * {
+  fill: none !important;
+  stroke: #111827 !important;
+  stroke-width: 2.2 !important;
+}
+
+// 2. 다크 모드 활성화 시 (어떤 테마 선택자든 100% 매칭)
 :root[saved-theme="dark"],
 html[saved-theme="dark"],
-body.theme-dark {
-  button.darkmode {
-    background-color: #161b22 !important;
-    border: 1px solid #30363d !important;
-
-    .dayIcon {
-      display: block !important;
-      fill: #fbbf24 !important;
-      stroke: none !important;
-      path {
-        fill: #fbbf24 !important;
-        stroke: none !important;
-      }
-    }
-    .nightIcon {
-      display: none !important;
-    }
-  }
-
-  button.readermode {
-    background-color: #161b22 !important;
-    border: 1px solid #30363d !important;
-
-    svg, svg path {
-      fill: #f0f6fc !important;
-      stroke: none !important;
-    }
-  }
-
+body.theme-dark,
+[saved-theme="dark"] {
+  button.darkmode,
+  button.readermode,
+  .sidebar.left .mobile-explorer,
   .search button.search-button {
     background-color: #161b22 !important;
     border: 1px solid #30363d !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
     color: #f0f6fc !important;
 
-    svg {
-      stroke: #f0f6fc !important;
-    }
     p {
       color: #f0f6fc !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
     }
+
+    svg {
+      fill: #f0f6fc !important;
+      stroke: #f0f6fc !important;
+
+      * {
+        fill: #f0f6fc !important;
+        stroke: #f0f6fc !important;
+      }
+      line, polyline {
+        fill: none !important;
+        stroke: #f0f6fc !important;
+        stroke-width: 2.2 !important;
+      }
+    }
+  }
+
+  // 다크모드 아이콘은 화사하고 따뜻한 골드 옐로우 (#fbbf24) 강제 적용
+  button.darkmode svg,
+  button.darkmode svg * {
+    fill: #fbbf24 !important;
+    stroke: #fbbf24 !important;
+  }
+
+  .search button.search-button svg,
+  .search button.search-button svg * {
+    fill: none !important;
+    stroke: #f0f6fc !important;
+    stroke-width: 2.2 !important;
   }
 }
 
