@@ -239,14 +239,13 @@ plugins:
     enabled: true
     options:
       title: "Recent Notes"
-      limit: 10
-      showTags: true
+      limit: 6
+      showTags: false
       hideTagPages: true
       hideFolderPages: true
     layout:
-      position: afterBody
-      priority: 10
-      condition: index-only
+      position: right
+      priority: 25
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
