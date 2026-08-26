@@ -1,4 +1,4 @@
-﻿---
+---
 title: Research Archive
 description: Systematic equity research and technology analysis.
 ---
@@ -16,8 +16,3 @@ Welcome to the digital research archive. Notes and briefs published from the pri
 - **Sellside Digests**: Institutional intelligence and counter-consensus viewpoints.
 - **Earnings Transcripts**: Comprehensive conference call translations and key metrics.
 - **Theme Deep Dives**: AI datacenter capex bottlenecks and structural tech shifts.
-
----
-
-### Recent Notes
-All published research notes are indexed dynamically in the sidebar explorer and graph view.

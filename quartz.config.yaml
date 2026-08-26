@@ -236,7 +236,17 @@ plugins:
       position: footer
       priority: 50
   - source: "@quartz-community/recent-notes"
-    enabled: false
+    enabled: true
+    options:
+      title: "Recent Notes"
+      limit: 10
+      showTags: true
+      hideTagPages: true
+      hideFolderPages: true
+    layout:
+      position: afterBody
+      priority: 10
+      condition: index-only
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
