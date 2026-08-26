@@ -106,15 +106,12 @@ article {
     width: 100% !important;
     min-width: unset !important;
     max-width: 100% !important;
-    padding: 0.65rem 0.5rem !important;
+    padding: 0.65rem 0.75rem !important;
     margin: 0 0 0.5rem 0 !important;
     box-sizing: border-box !important;
     height: auto !important;
 
-    .page-title {
-      display: none !important;
-    }
-
+    .page-title,
     .spacer,
     .mobile-only {
       display: none !important;
@@ -127,6 +124,25 @@ article {
       display: flex !important;
       align-items: center !important;
       flex-shrink: 0 !important;
+
+      .mobile-explorer {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 32px !important;
+        height: 32px !important;
+
+        svg {
+          width: 22px !important;
+          height: 22px !important;
+          stroke-width: 2.4 !important;
+        }
+      }
     }
 
     .flex-component {
@@ -135,7 +151,7 @@ article {
       flex-direction: row !important;
       align-items: center !important;
       justify-content: flex-end !important;
-      gap: 0.45rem !important;
+      gap: 0.55rem !important;
       margin-left: auto !important;
       flex-shrink: 0 !important;
       width: auto !important;
@@ -165,45 +181,39 @@ article {
 }
 
 // =========================================================================
-// 상단 네비게이션 버튼 (탐색기/다크모드/검색/리더모드) 완벽 디자인 및 100% 선명도
+// 상단 네비게이션 바 & 아이콘 완벽 선명도 (Quartz Themes Mask-Icon 호환)
 // =========================================================================
 
-// 공통 버튼 크기 및 터치 영역
-.sidebar.left .mobile-explorer,
+// 1. 공통 툴바 버튼 및 아이콘 기본 설정
 button.darkmode,
-button.readermode,
+button.readermode {
+  border: none !important;
+  box-shadow: none !important;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+  margin: 0 2px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .search button.search-button {
-  width: 36px !important;
-  height: 36px !important;
-  min-width: 36px !important;
-  border-radius: 8px !important;
+  height: 34px !important;
+  padding: 0 0.75rem !important;
+  font-size: 0.84rem !important;
+  border-radius: 6px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  cursor: pointer !important;
-  flex-shrink: 0 !important;
-  transition: all 0.15s ease !important;
-
-  svg {
-    width: 18px !important;
-    height: 18px !important;
-    max-width: 18px !important;
-    max-height: 18px !important;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-}
-
-.sidebar.left .search button.search-button {
-  width: auto !important;
-  min-width: auto !important;
-  height: 36px !important;
-  padding: 0 0.75rem !important;
   gap: 0.35rem !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  margin: 0 2px !important;
 
   svg {
     width: 14px !important;
@@ -211,93 +221,71 @@ button.readermode,
   }
 }
 
-// 1. 라이트 모드 (기본값)
-button.darkmode,
-button.readermode,
-.sidebar.left .mobile-explorer,
-.search button.search-button {
-  background-color: #ffffff !important;
-  border: 1px solid #d1d5db !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  color: #111827 !important;
-
-  p {
-    color: #111827 !important;
-    font-weight: 500 !important;
-    margin: 0 !important;
-  }
-
-  svg {
-    fill: #111827 !important;
+// 2. 라이트 모드 컬러 (기본 및 saved-theme="light")
+html:not([saved-theme="dark"]),
+:root[saved-theme="light"],
+html[saved-theme="light"],
+body.theme-light {
+  .sidebar.left .mobile-explorer svg {
     stroke: #111827 !important;
+  }
 
-    * {
-      fill: #111827 !important;
+  // Quartz mask-image 아이콘의 색상은 background-color로 결정됨!
+  button.darkmode,
+  button.readermode {
+    background-color: #111827 !important;
+  }
+
+  .search button.search-button {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+
+    svg {
       stroke: #111827 !important;
-    }
-    line, polyline {
       fill: none !important;
-      stroke: #111827 !important;
-      stroke-width: 2.2 !important;
+    }
+    p {
+      color: #111827 !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
     }
   }
 }
 
-.search button.search-button svg,
-.search button.search-button svg * {
-  fill: none !important;
-  stroke: #111827 !important;
-  stroke-width: 2.2 !important;
-}
-
-// 2. 다크 모드 활성화 시 (어떤 테마 선택자든 100% 매칭)
+// 3. 다크 모드 컬러 (saved-theme="dark" 및 theme-dark)
 :root[saved-theme="dark"],
 html[saved-theme="dark"],
 body.theme-dark,
 [saved-theme="dark"] {
-  button.darkmode,
-  button.readermode,
-  .sidebar.left .mobile-explorer,
+  .sidebar.left .mobile-explorer svg {
+    stroke: #f0f6fc !important;
+  }
+
+  // 다크모드 아이콘: 화사하고 눈에 확 띄는 골드 (#fbbf24)
+  button.darkmode {
+    background-color: #fbbf24 !important;
+  }
+
+  // 리더모드 아이콘: 깔끔한 화이트 (#f0f6fc)
+  button.readermode {
+    background-color: #f0f6fc !important;
+  }
+
   .search button.search-button {
     background-color: #161b22 !important;
     border: 1px solid #30363d !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
     color: #f0f6fc !important;
 
+    svg {
+      stroke: #f0f6fc !important;
+      fill: none !important;
+    }
     p {
       color: #f0f6fc !important;
       font-weight: 500 !important;
       margin: 0 !important;
     }
-
-    svg {
-      fill: #f0f6fc !important;
-      stroke: #f0f6fc !important;
-
-      * {
-        fill: #f0f6fc !important;
-        stroke: #f0f6fc !important;
-      }
-      line, polyline {
-        fill: none !important;
-        stroke: #f0f6fc !important;
-        stroke-width: 2.2 !important;
-      }
-    }
-  }
-
-  // 다크모드 아이콘은 화사하고 따뜻한 골드 옐로우 (#fbbf24) 강제 적용
-  button.darkmode svg,
-  button.darkmode svg * {
-    fill: #fbbf24 !important;
-    stroke: #fbbf24 !important;
-  }
-
-  .search button.search-button svg,
-  .search button.search-button svg * {
-    fill: none !important;
-    stroke: #f0f6fc !important;
-    stroke-width: 2.2 !important;
   }
 }
 
