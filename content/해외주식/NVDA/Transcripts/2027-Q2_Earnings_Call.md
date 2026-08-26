@@ -1,6 +1,6 @@
 ---
-title: "NVDA Q2 FY27 Earnings Call"
-date: 2026-08-26
+title: "NVDA Q2 FY27 Earnings Call Transcript"
+date: 2026-08-27
 ticker: NVDA
 company: NVIDIA Corporation
 event: Q2 FY27 Earnings Call
