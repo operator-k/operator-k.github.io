@@ -1,5 +1,6 @@
 ---
 title: PDD Q2 FY26 Earnings Update
+description: PDD Holdings Inc. (PDD) Q2 FY26 Earnings Update Report
 date: 2026-08-26
 ticker: PDD
 company: PDD Holdings Inc.
