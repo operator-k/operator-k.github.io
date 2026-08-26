@@ -165,8 +165,8 @@ plugins:
   - source: "@quartz-community/graph"
     enabled: true
     layout:
-      position: right
-      priority: 10
+      position: left
+      priority: 60
   - source: "@quartz-community/search"
     enabled: true
     layout:
@@ -245,7 +245,7 @@ plugins:
       hideFolderPages: true
     layout:
       position: right
-      priority: 25
+      priority: 10
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
