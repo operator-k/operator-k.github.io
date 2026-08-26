@@ -34,7 +34,7 @@ footer {
     width: 100% !important;
     min-width: unset !important;
     max-width: 100% !important;
-    padding: 0.65rem 0.25rem !important;
+    padding: 0.65rem 0.5rem !important;
     margin: 0 0 0.75rem 0 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
@@ -46,46 +46,82 @@ footer {
     border-bottom: 1px solid var(--lightgray) !important;
     backdrop-filter: blur(8px);
 
-    .page-title {
-      font-size: 1.05rem !important;
+    .explorer {
+      order: 1 !important;
       margin: 0 !important;
-      font-weight: 700 !important;
-      letter-spacing: -0.02em !important;
-      white-space: nowrap !important;
-      flex-shrink: 1 !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-
-      a {
-        color: var(--dark) !important;
-        text-decoration: none !important;
-      }
-    }
-
-    .flex-component {
-      display: inline-flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      justify-content: flex-end !important;
-      gap: 0.35rem !important;
+      padding: 0 !important;
       flex-shrink: 0 !important;
-      margin-left: auto !important;
-    }
+      display: flex !important;
+      align-items: center !important;
 
-    .search {
-      min-width: 0 !important;
-      flex-shrink: 1 !important;
-
-      button.search-button {
-        padding: 0.3rem 0.55rem !important;
-        font-size: 0.8rem !important;
+      .mobile-explorer {
+        width: 34px !important;
+        height: 34px !important;
+        padding: 0 !important;
         border-radius: 6px !important;
         border: 1px solid var(--lightgray) !important;
         background-color: var(--light) !important;
         color: var(--dark) !important;
         display: inline-flex !important;
         align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        cursor: pointer !important;
+
+        svg {
+          width: 18px !important;
+          height: 18px !important;
+          stroke: var(--dark) !important;
+          fill: none !important;
+        }
+      }
+    }
+
+    .spacer,
+    .mobile-only {
+      display: none !important;
+    }
+
+    .page-title {
+      display: none !important;
+    }
+
+    .flex-component {
+      order: 2 !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 0.45rem !important;
+      flex-shrink: 0 !important;
+      margin-left: auto !important;
+      width: auto !important;
+
+      > div {
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+        flex-basis: auto !important;
+      }
+    }
+
+    .search {
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+
+      button.search-button {
+        height: 34px !important;
+        padding: 0 0.65rem !important;
+        font-size: 0.82rem !important;
+        border-radius: 6px !important;
+        border: 1px solid var(--lightgray) !important;
+        background-color: var(--light) !important;
+        color: var(--dark) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         gap: 0.35rem !important;
+        cursor: pointer !important;
+        white-space: nowrap !important;
 
         svg {
           width: 14px !important;
@@ -96,18 +132,17 @@ footer {
 
         p {
           margin: 0 !important;
-          font-size: 0.8rem !important;
+          font-size: 0.82rem !important;
           color: var(--dark) !important;
         }
       }
     }
 
     button.darkmode,
-    button.readermode,
-    .explorer-toggle.mobile-explorer {
-      width: 32px !important;
-      height: 32px !important;
-      padding: 0.3rem !important;
+    button.readermode {
+      width: 34px !important;
+      height: 34px !important;
+      padding: 0 !important;
       border-radius: 6px !important;
       border: 1px solid var(--lightgray) !important;
       background-color: var(--light) !important;
@@ -117,62 +152,63 @@ footer {
       justify-content: center !important;
       flex-shrink: 0 !important;
       cursor: pointer !important;
-    }
 
-    button.darkmode {
       svg {
-        width: 16px !important;
-        height: 16px !important;
+        width: 17px !important;
+        height: 17px !important;
         fill: var(--dark) !important;
-      }
-    }
-
-    button.readermode {
-      svg {
-        width: 16px !important;
-        height: 16px !important;
-        fill: var(--dark) !important;
-      }
-    }
-
-    .explorer-toggle.mobile-explorer {
-      svg {
-        width: 18px !important;
-        height: 18px !important;
-        stroke: var(--dark) !important;
-        fill: none !important;
       }
     }
   }
 }
 
 // 다크모드/라이트모드 아이콘 토글 및 선명도 보장
-[saved-theme="dark"] .darkmode {
-  .dayIcon {
-    display: inline-block !important;
-    fill: #f0f6fc !important;
+[saved-theme="dark"] {
+  .darkmode {
+    .dayIcon {
+      display: inline-block !important;
+      fill: #f0f6fc !important;
+      path {
+        fill: #f0f6fc !important;
+      }
+    }
+    .nightIcon {
+      display: none !important;
+    }
   }
-  .nightIcon {
-    display: none !important;
+  .readermode svg,
+  .readermode svg path {
+    fill: #f0f6fc !important;
   }
 }
 
-[saved-theme="light"] .darkmode {
-  .dayIcon {
-    display: none !important;
+[saved-theme="light"] {
+  .darkmode {
+    .dayIcon {
+      display: none !important;
+    }
+    .nightIcon {
+      display: inline-block !important;
+      fill: #111827 !important;
+      path {
+        fill: #111827 !important;
+      }
+    }
   }
-  .nightIcon {
-    display: inline-block !important;
+  .readermode svg,
+  .readermode svg path {
     fill: #111827 !important;
   }
 }
 
 // 기본 다크모드/리더모드 버튼 SVG fill fallback
-.darkmode svg {
+.darkmode svg,
+.darkmode svg path {
   fill: var(--dark) !important;
 }
 
-.readermode svg {
+.readermode svg,
+.readermode svg path {
   fill: var(--dark) !important;
 }
 
