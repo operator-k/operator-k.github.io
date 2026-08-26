@@ -89,8 +89,178 @@ article {
   }
 }
 
-// 4. 모바일 레이아웃 및 본문 가로폭 오버플로우 방지
+// 4. 모바일 상단 네비게이션 헤더 상시 고정 (아티클/홈페이지 공통 유지)
 @media all and ($mobile) {
+  .sidebar.left {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background-color: var(--light) !important;
+    border-bottom: 1px solid var(--lightgray) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+    padding: 0.65rem 0.5rem !important;
+    margin: 0 0 0.5rem 0 !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+
+    .page-title {
+      display: none !important;
+    }
+
+    .spacer,
+    .mobile-only {
+      display: none !important;
+    }
+
+    .explorer {
+      order: 1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      flex-shrink: 0 !important;
+
+      .mobile-explorer {
+        width: 34px !important;
+        height: 34px !important;
+        padding: 0 !important;
+        border-radius: 6px !important;
+        border: 1px solid var(--lightgray) !important;
+        background-color: var(--light) !important;
+        color: var(--darkgray) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        flex-shrink: 0 !important;
+
+        svg {
+          width: 18px !important;
+          height: 18px !important;
+          stroke: var(--darkgray) !important;
+          fill: none !important;
+        }
+      }
+    }
+
+    .flex-component {
+      order: 2 !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 0.45rem !important;
+      margin-left: auto !important;
+      flex-shrink: 0 !important;
+      width: auto !important;
+
+      > div {
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+    }
+
+    button.darkmode {
+      order: 1 !important;
+      width: 34px !important;
+      height: 34px !important;
+      padding: 0 !important;
+      border-radius: 6px !important;
+      border: 1px solid var(--lightgray) !important;
+      background-color: var(--light) !important;
+      color: var(--darkgray) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+
+      svg {
+        width: 18px !important;
+        height: 18px !important;
+        fill: var(--darkgray) !important;
+        stroke: var(--darkgray) !important;
+
+        path {
+          fill: var(--darkgray) !important;
+          stroke: var(--darkgray) !important;
+        }
+      }
+    }
+
+    .search {
+      order: 2 !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+
+      button.search-button {
+        height: 34px !important;
+        padding: 0 0.65rem !important;
+        font-size: 0.82rem !important;
+        border-radius: 6px !important;
+        border: 1px solid var(--lightgray) !important;
+        background-color: var(--light) !important;
+        color: var(--darkgray) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.35rem !important;
+        cursor: pointer !important;
+        white-space: nowrap !important;
+
+        svg {
+          width: 14px !important;
+          height: 14px !important;
+          stroke: var(--darkgray) !important;
+          fill: none !important;
+        }
+
+        p {
+          margin: 0 !important;
+          font-size: 0.82rem !important;
+          color: var(--darkgray) !important;
+        }
+      }
+    }
+
+    button.readermode {
+      order: 3 !important;
+      width: 34px !important;
+      height: 34px !important;
+      padding: 0 !important;
+      border-radius: 6px !important;
+      border: 1px solid var(--lightgray) !important;
+      background-color: var(--light) !important;
+      color: var(--darkgray) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+
+      svg {
+        width: 18px !important;
+        height: 18px !important;
+        fill: var(--darkgray) !important;
+        stroke: var(--darkgray) !important;
+
+        path {
+          fill: var(--darkgray) !important;
+          stroke: var(--darkgray) !important;
+        }
+      }
+    }
+  }
+
   #quartz-body {
     width: 100% !important;
     max-width: 100vw !important;
@@ -104,6 +274,38 @@ article {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+}
+
+// 다크모드/라이트모드 아이콘 노출 규칙
+.darkmode {
+  .dayIcon {
+    display: none !important;
+  }
+  .nightIcon {
+    display: block !important;
+  }
+}
+
+:root[saved-theme="dark"] .darkmode,
+html[saved-theme="dark"] .darkmode,
+[saved-theme="dark"] .darkmode {
+  .dayIcon {
+    display: block !important;
+  }
+  .nightIcon {
+    display: none !important;
+  }
+}
+
+:root[saved-theme="light"] .darkmode,
+html[saved-theme="light"] .darkmode,
+[saved-theme="light"] .darkmode {
+  .dayIcon {
+    display: none !important;
+  }
+  .nightIcon {
+    display: block !important;
   }
 }
 
