@@ -165,8 +165,8 @@ plugins:
   - source: "@quartz-community/graph"
     enabled: true
     layout:
-      position: left
-      priority: 60
+      position: right
+      priority: 10
   - source: "@quartz-community/search"
     enabled: true
     layout:
@@ -239,13 +239,14 @@ plugins:
     enabled: true
     options:
       title: "Recent Notes"
-      limit: 6
+      limit: 10
       showTags: false
       hideTagPages: true
       hideFolderPages: true
     layout:
-      position: right
+      position: afterBody
       priority: 10
+      condition: index-only
   - source: "@quartz-community/spacer"
     enabled: true
     options: {}
