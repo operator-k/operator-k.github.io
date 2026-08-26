@@ -3,8 +3,6 @@ title: Research Archive
 description: Systematic equity research and technology analysis.
 ---
 
-# Research Archive
-
 > [!NOTE]
 > Systematic equity research, value chain dissection, and intelligence briefings.
 
