@@ -1,14 +1,16 @@
 ---
-title: "NVDA Q2 2027 Earnings Call"
+title: "NVDA Q2 FY27 Earnings Call"
 date: 2026-08-26
 ticker: NVDA
 company: NVIDIA Corporation
-event: Q2 FY2027 Earnings Call
+event: Q2 FY27 Earnings Call
 tags:
   - transcripts
   - ticker/NVDA
   - event/earnings-call
 ---
+
+# NVIDIA Corporation (NVDA) Q2 FY27 Earnings Call Transcript
 
 엔비디아(NVIDIA Corporation) 2027 회계연도 2분기(Q2 FY2027) 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
 
