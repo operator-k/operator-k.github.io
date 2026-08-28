@@ -106,7 +106,7 @@ article {
     width: 100% !important;
     min-width: unset !important;
     max-width: 100% !important;
-    padding: 0.6rem 1rem !important; // 본문 #quartz-body 1rem 좌우 패딩과 완벽 일치
+    padding: 0.65rem 1.2rem !important; // 좌우 여백을 넉넉하고 완벽하게 균등 배치
     margin: 0 0 0.5rem 0 !important;
     box-sizing: border-box !important;
     height: auto !important;
@@ -117,6 +117,7 @@ article {
       display: none !important;
     }
 
+    // 좌측 그룹: 햄버거 메뉴 + 홈 버튼
     .explorer {
       order: 1 !important;
       margin: 0 !important;
@@ -145,13 +146,40 @@ article {
       }
     }
 
+    .mobile-home-btn {
+      order: 1 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 32px !important;
+      height: 32px !important;
+      margin-left: 0.35rem !important;
+      margin-right: auto !important;
+      color: var(--dark) !important;
+      border-radius: 6px !important;
+      transition: all 0.15s ease !important;
+      text-decoration: none !important;
+
+      &:hover {
+        background-color: var(--lightgray) !important;
+        color: var(--secondary) !important;
+      }
+
+      svg {
+        width: 20px !important;
+        height: 20px !important;
+        stroke: currentColor !important;
+      }
+    }
+
+    // 우측 그룹: 다크모드 + 검색 + 리더모드
     .flex-component {
       order: 2 !important;
       display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
       justify-content: flex-end !important;
-      gap: 0.65rem !important;
+      gap: 0.6rem !important;
       margin-left: auto !important;
       margin-right: 0 !important;
       padding-right: 0 !important;
@@ -199,8 +227,7 @@ article {
 // =========================================================================
 
 // 1. 공통 툴바 버튼 및 아이콘 기본 설정
-button.darkmode,
-button.readermode {
+button.darkmode {
   border: none !important;
   box-shadow: none !important;
   width: 26px !important;
@@ -216,6 +243,33 @@ button.readermode {
   flex-shrink: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+button.readermode {
+  border: none !important;
+  box-shadow: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+
+  svg {
+    position: relative !important;
+    top: unset !important;
+    left: unset !important;
+    width: 20px !important;
+    height: 20px !important;
+    transition: all 0.15s ease !important;
+  }
 }
 
 .search button.search-button {
@@ -242,13 +296,18 @@ html:not([saved-theme="dark"]),
 :root[saved-theme="light"],
 html[saved-theme="light"],
 body.theme-light {
-  .sidebar.left .mobile-explorer svg {
+  .sidebar.left .mobile-explorer svg,
+  .mobile-home-btn svg {
     stroke: #111827 !important;
   }
 
-  button.darkmode,
-  button.readermode {
+  button.darkmode {
     background-color: #111827 !important;
+  }
+
+  button.readermode svg {
+    fill: #111827 !important;
+    stroke: #111827 !important;
   }
 
   .search button.search-button {
@@ -273,7 +332,8 @@ body.theme-light {
 html[saved-theme="dark"],
 body.theme-dark,
 [saved-theme="dark"] {
-  .sidebar.left .mobile-explorer svg {
+  .sidebar.left .mobile-explorer svg,
+  .mobile-home-btn svg {
     stroke: #f0f6fc !important;
   }
 
@@ -281,8 +341,9 @@ body.theme-dark,
     background-color: #fbbf24 !important;
   }
 
-  button.readermode {
-    background-color: #f0f6fc !important;
+  button.readermode svg {
+    fill: #f0f6fc !important;
+    stroke: #f0f6fc !important;
   }
 
   .search button.search-button {
