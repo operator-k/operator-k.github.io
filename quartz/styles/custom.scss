@@ -1,10 +1,42 @@
 @use "./variables.scss" as *;
 
-// 1. 사이드바 너비 확장 (데스크탑 전용)
+// 1. 데스크탑 사이드바 (데스크탑 전용 - 홈버튼 절대 숨김 및 정상 트리 표시)
 @media all and not ($mobile) {
+  .mobile-home-btn {
+    display: none !important;
+  }
+
   .sidebar.left {
     width: 320px !important;
     min-width: 290px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 2rem 1.2rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+
+    .explorer {
+      display: flex !important;
+      flex-direction: column !important;
+      margin-top: 1.5rem !important;
+      width: 100% !important;
+
+      .explorer-content {
+        display: block !important;
+        visibility: visible !important;
+        transform: none !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        margin-top: 0.5rem !important;
+      }
+    }
   }
 }
 
@@ -106,7 +138,7 @@ article {
     width: 100% !important;
     min-width: unset !important;
     max-width: 100% !important;
-    padding: 0.65rem 1.2rem !important; // 좌우 여백을 넉넉하고 완벽하게 균등 배치
+    padding: 0.65rem 1.2rem !important;
     margin: 0 0 0.5rem 0 !important;
     box-sizing: border-box !important;
     height: auto !important;
@@ -144,6 +176,28 @@ article {
           stroke-width: 2.4 !important;
         }
       }
+
+      // 모바일에서 탐색기 탭했을 때 드로어 오버레이
+      &.collapsed > .explorer-content {
+        transform: translateX(-100vw) !important;
+        visibility: hidden !important;
+      }
+
+      &:not(.collapsed) > .explorer-content {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 100000 !important;
+        background-color: var(--light) !important;
+        padding: 4.5rem 1.5rem 2rem 1.5rem !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.15) !important;
+      }
     }
 
     .mobile-home-btn {
@@ -159,6 +213,7 @@ article {
       border-radius: 6px !important;
       transition: all 0.15s ease !important;
       text-decoration: none !important;
+      z-index: 10 !important;
 
       &:hover {
         background-color: var(--lightgray) !important;
