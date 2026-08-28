@@ -10,11 +10,13 @@ tags:
   - event/earnings-call
 ---
 
-메타 플랫폼스(Meta Platforms, Inc.) 2026년 2분기 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Meta Platforms, Inc. (META)
 - 실적 시즌: Q2 2026 (2026년 7월 30일 발표)
 - 문서 유형: 한글 전문 번역 (Full Translation)
+</details>
 
 ▌ 개회사 및 재무 공시
 

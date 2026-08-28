@@ -10,11 +10,13 @@ tags:
   - event/earnings-call
 ---
 
-PDD 홀딩스 (PDD Holdings Inc.) 2025년 4분기 및 연간 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: PDD Holdings Inc. (PDD)
 - 실적 시즌: Q4 & FY2025 (2026년 3월 발표)
 - 문서 유형: 한글 전문 번역 (Full Translation)
+</details>
 
 ▌ 개회사 및 참석자 소개
 

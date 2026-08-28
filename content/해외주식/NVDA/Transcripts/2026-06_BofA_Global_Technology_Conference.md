@@ -10,14 +10,16 @@ tags:
   - event/conference
 ---
 
-엔비디아(NVIDIA Corporation) 뱅크오브아메리카 2026 글로벌 테크놀로지 컨퍼런스 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: NVIDIA Corporation (NVDA)
 - 행사명: Bank of America 2026 Global Technology Conference (2026년 6월)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 대담자:
-  - 비벡 아리아 (Vivek Arya) - BofA Securities 주식 리서치 전무이사 (Managing Director in Equity Research)
-  - 콜렛 크레스 (Colette Kress) - NVIDIA 수석 부사장 겸 최고재무책임자 (EVP and CFO, NVIDIA)
+- 비벡 아리아 (Vivek Arya) - BofA Securities 주식 리서치 전무이사 (Managing Director in Equity Research)
+- 콜렛 크레스 (Colette Kress) - NVIDIA 수석 부사장 겸 최고재무책임자 (EVP and CFO, NVIDIA)
+</details>
 
 ▌ 개회 및 GTC 타이베이 주요 발표 하이라이트
 

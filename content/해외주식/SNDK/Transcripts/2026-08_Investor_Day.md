@@ -9,11 +9,13 @@ tags:
   - ticker/SNDK
   - event/investor-day
 ---
-샌디스크(SanDisk Corporation) 2026 인베스터 데이 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: SanDisk Corporation (SNDK)
 - 행사명: 인베스터 데이 2026 (Investor Day 2026)
 - 문서 유형: 한글 전문 번역 (Full Translation)
+</details>
 
 ▌ 개회사 및 면책 공시 (Opening & Safe Harbor)
 

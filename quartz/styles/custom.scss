@@ -89,7 +89,7 @@ article {
   }
 }
 
-// 4. 모바일 상단 네비게이션 헤더 상시 고정 (아티클/홈페이지 공통 유지)
+// 4. 모바일 상단 네비게이션 헤더 대칭 정렬 & 상시 고정
 @media all and ($mobile) {
   .sidebar.left {
     position: sticky !important;
@@ -97,8 +97,8 @@ article {
     z-index: 9999 !important;
     background-color: var(--light) !important;
     border-bottom: 1px solid var(--lightgray) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
@@ -106,7 +106,7 @@ article {
     width: 100% !important;
     min-width: unset !important;
     max-width: 100% !important;
-    padding: 0.65rem 0.75rem !important;
+    padding: 0.6rem 1rem !important; // 본문 #quartz-body 1rem 좌우 패딩과 완벽 일치
     margin: 0 0 0.5rem 0 !important;
     box-sizing: border-box !important;
     height: auto !important;
@@ -151,8 +151,10 @@ article {
       flex-direction: row !important;
       align-items: center !important;
       justify-content: flex-end !important;
-      gap: 0.55rem !important;
+      gap: 0.65rem !important;
       margin-left: auto !important;
+      margin-right: 0 !important;
+      padding-right: 0 !important;
       flex-shrink: 0 !important;
       width: auto !important;
 
@@ -178,10 +180,22 @@ article {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+
+  // 모바일 Properties(태그 박스) 슬림화
+  .popover-container,
+  details.popover {
+    margin-bottom: 0.4rem !important;
+
+    summary {
+      font-size: 0.8rem !important;
+      padding: 0.15rem 0 !important;
+      color: var(--gray) !important;
+    }
+  }
 }
 
 // =========================================================================
-// 상단 네비게이션 바 & 아이콘 완벽 선명도 (Quartz Themes Mask-Icon 호환)
+// 상단 네비게이션 바 & 아이콘 완벽 선명도 및 규격 통일
 // =========================================================================
 
 // 1. 공통 툴바 버튼 및 아이콘 기본 설정
@@ -189,23 +203,25 @@ button.darkmode,
 button.readermode {
   border: none !important;
   box-shadow: none !important;
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px !important;
-  min-height: 24px !important;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
   padding: 0 !important;
-  margin: 0 2px !important;
+  margin: 0 !important;
   cursor: pointer !important;
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   flex-shrink: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
 
 .search button.search-button {
-  height: 34px !important;
-  padding: 0 0.75rem !important;
-  font-size: 0.84rem !important;
+  height: 32px !important;
+  padding: 0 0.65rem !important;
+  font-size: 0.82rem !important;
   border-radius: 6px !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -213,7 +229,7 @@ button.readermode {
   gap: 0.35rem !important;
   cursor: pointer !important;
   white-space: nowrap !important;
-  margin: 0 2px !important;
+  margin: 0 !important;
 
   svg {
     width: 14px !important;
@@ -230,7 +246,6 @@ body.theme-light {
     stroke: #111827 !important;
   }
 
-  // Quartz mask-image 아이콘의 색상은 background-color로 결정됨!
   button.darkmode,
   button.readermode {
     background-color: #111827 !important;
@@ -262,12 +277,10 @@ body.theme-dark,
     stroke: #f0f6fc !important;
   }
 
-  // 다크모드 아이콘: 화사하고 눈에 확 띄는 골드 (#fbbf24)
   button.darkmode {
     background-color: #fbbf24 !important;
   }
 
-  // 리더모드 아이콘: 깔끔한 화이트 (#f0f6fc)
   button.readermode {
     background-color: #f0f6fc !important;
   }
@@ -289,7 +302,7 @@ body.theme-dark,
   }
 }
 
-// 5. Recent Notes & PageList 깔끔한 카드 UI (라이트: 화이트 카드 / 다크: 다크 서피스)
+// 5. Recent Notes & PageList 깔끔한 카드 UI
 .recent-notes {
   margin-top: 2.5rem !important;
   margin-bottom: 2rem !important;
@@ -325,7 +338,6 @@ ul.section-ul {
   gap: 0.65rem !important;
 }
 
-// 카드 디자인
 .recent-notes .recent-li,
 ul.section-ul li.section-li {
   list-style: none !important;
@@ -357,7 +369,6 @@ ul.section-ul li.section-li {
   }
 }
 
-// 다크 모드 카드
 [saved-theme="dark"] {
   .recent-notes .recent-li,
   ul.section-ul li.section-li {
@@ -492,5 +503,49 @@ ul.section-ul li.section-li {
   }
 }
 
+// 7. 트랜스크립트 전용 반응형 접이식 메타 박스
+details.transcript-meta-box {
+  margin: 0.4rem 0 1.2rem 0 !important;
+  padding: 0.55rem 0.85rem !important;
+  background-color: var(--lightgray) !important;
+  border: 1px solid var(--lightgray) !important;
+  border-radius: 8px !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  transition: all 0.2s ease;
 
+  summary {
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    color: var(--dark) !important;
+    list-style: none !important;
+    display: flex !important;
+    align-items: center !important;
+    user-select: none !important;
+    font-size: 0.88rem !important;
 
+    &::-webkit-details-marker {
+      display: none !important;
+    }
+
+    &:hover {
+      color: var(--secondary) !important;
+    }
+  }
+
+  ul {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    padding-left: 1.1rem !important;
+    list-style-type: disc !important;
+  }
+
+  li {
+    margin: 0.25rem 0 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
+    color: var(--darkgray) !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+  }
+}

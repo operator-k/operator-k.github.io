@@ -10,13 +10,15 @@ tags:
   - event/earnings-call
 ---
 
-마벨 테크놀로지(Marvell Technology, Inc.) 2027 회계연도 2분기(Q2 FY2027) 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Marvell Technology, Inc. (MRVL)
 - 실적 시즌: Q2 FY2027 (2026년 8월 27일 발표)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 경영진 발표자: 맷 머피(이사회 의장 겸 CEO), 댄 던(CFO), 크리스 쿱만스(사장 겸 COO), 산딥 바라티(데이터센터 그룹 사장), 로스 세이모어(IR 수석 부사장), 오퍼레이터
 - 애널리스트 질의자: 톰 오말리(Barclays), 할란 서(JPMorgan), 비벡 아리아(BofA), 애런 레이커스(Wells Fargo), 조 무어(Morgan Stanley), 벤 라이체스(Melius), C.J. 뮤즈(Cantor), 제임스 슈나이더(Goldman Sachs), 퀸 볼튼(Needham)
+</details>
 
 ▌ 개회사 및 IR 공시: 로스 세이모어 (Ross Seymore - IR 수석 부사장)
 

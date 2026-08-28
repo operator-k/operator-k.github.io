@@ -10,11 +10,13 @@ tags:
   - event/earnings-call
 ---
 
-어플라이드 머티어리얼즈(Applied Materials, Inc.) 2026 회계연도 3분기 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Applied Materials, Inc. (AMAT)
 - 실적 시즌: Q3 FY2026 (2026 회계연도 3분기)
 - 문서 유형: 한글 전문 번역 (Full Translation)
+</details>
 
 ▌ 개회사 및 재무 공시
 

@@ -10,11 +10,13 @@ tags:
   - event/earnings-call
 ---
 
-알리바바 그룹 홀딩스 (Alibaba Group Holding Limited) 2027 회계연도 1분기 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Alibaba Group Holding Limited (BABA)
 - 실적 시즌: FY2027 1Q (2026년 6월 결산 분기)
 - 문서 유형: 100% 한글 전문 번역 (Full Text Translation)
+</details>
 
 ▌ 개회사 및 IR 안내
 

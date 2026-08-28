@@ -10,15 +10,15 @@ tags:
   - event/earnings-call
 ---
 
-# NVIDIA Corporation (NVDA) Q2 FY27 Earnings Call Transcript
-
-엔비디아(NVIDIA Corporation) 2027 회계연도 2분기(Q2 FY2027) 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: NVIDIA Corporation (NVDA)
 - 실적 시즌: Q2 FY2027 (2026년 8월 26일 발표)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 경영진 발표자: 젠슨 황(사장 겸 최고경영자(CEO)), 콜렛 크레스(부사장 겸 최고재무책임자(CFO)), 토시야 하리(부사장), 티파니(오퍼레이터)
 - 애널리스트 질의자: 조셉 무어 (Joseph Moore(Morgan Stanley)), C.J. 뮤즈 (C.J. Muse(Cantor Fitzgerald)), 스테이시 라스곤 (Stacy Rasgon(Bernstein Research)), 비벡 아리아 (Vivek Arya(BofA Securities)), 티모시 아큐리 (Timothy Arcuri(UBS)), 벤 라이체스 (Ben Reitzes(Melius Research)), 제임스 슈나이더 (James Schneider(Goldman Sachs)), 애런 레이커스 (Aaron Rakers(Wells Fargo))
+</details>
 
 ▌ 개회사 및 재무 공시: 토시야 하리 (Toshiya Hari - IR 및 전략 재무 부사장)
 

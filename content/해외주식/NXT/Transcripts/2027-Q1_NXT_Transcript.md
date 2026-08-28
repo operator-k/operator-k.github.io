@@ -10,16 +10,18 @@ tags:
   - event/earnings-call
 ---
 
-Nextpower Inc. Q1 2027 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Nextpower Inc. (NXT)
 - 실적 시즌: Q1 FY2027 (2027 회계연도 1분기)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 주요 참석자:
-  - 사라는 (Sarah Lee) - IR 총괄
-  - 단 슈가 (Dan Shugar) - CEO 및 창업자
-  - 하워드 벵거 (Howard Wenger) - 사장
-  - 척 보인턴 (Chuck Boynton) - CFO
+- 사라는 (Sarah Lee) - IR 총괄
+- 단 슈가 (Dan Shugar) - CEO 및 창업자
+- 하워드 벵거 (Howard Wenger) - 사장
+- 척 보인턴 (Chuck Boynton) - CFO
+</details>
 
 ▌ 개회사 및 재무 공시
 

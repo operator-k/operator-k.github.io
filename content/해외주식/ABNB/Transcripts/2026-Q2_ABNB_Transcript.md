@@ -10,13 +10,13 @@ tags:
   - event/earnings-call
 ---
 
-Airbnb, Inc. 2026년 2분기 실적 발표 컨퍼런스 콜 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: Airbnb, Inc. (ABNB)
 - 실적 시즌: Q2 2026
 - 문서 유형: 한글 전문 번역 (Full Translation)
-
----
+</details>
 
 ▌ 개회사 및 재무 공시
 

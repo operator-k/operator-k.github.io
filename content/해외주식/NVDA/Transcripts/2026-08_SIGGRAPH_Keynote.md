@@ -10,12 +10,14 @@ tags:
   - event/keynote
 ---
 
-엔비디아(NVIDIA Corporation) SIGGRAPH 2026 키노트 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: NVIDIA Corporation (NVDA)
 - 행사명: SIGGRAPH 2026 Research Keynote (2026년 8월)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 경영진 발표자: 크리스 레드먼(SIGGRAPH 2026 컨퍼런스 의장, Apple), 젠슨 황(CEO), 에드워드 류(NVIDIA 응용 딥러닝 연구 디렉터), 가브 레오네(NVIDIA 크리에이티브 아티스트), 닐 애쉬턴(NVIDIA 수석 엔지니어 (Distinguished Engineer)), 밍유 류(부사장 (VP of Cosmos Lab)), 앤디(NVIDIA 데모 프레젠터)
+</details>
 
 ▌ 환영사: 크리스 레드먼 (Chris Redmann - SIGGRAPH 2026 컨퍼런스 의장, Apple)
 

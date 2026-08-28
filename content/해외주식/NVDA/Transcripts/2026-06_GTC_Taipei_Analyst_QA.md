@@ -10,25 +10,27 @@ tags:
   - event/conference
 ---
 
-엔비디아(NVIDIA Corporation) GTC 타이베이 2026 재무 애널리스트 Q&A 세션 트랜스크립트 (한글 전문 번역)
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
 
 - 기업명: NVIDIA Corporation (NVDA)
 - 행사명: GTC Taipei 2026 Financial Analyst Q&A (2026년 6월)
 - 문서 유형: 한글 전문 번역 (Full Translation)
 - 주요 참석자 및 발언자:
-  - 젠슨 황 (Jensen Huang) - NVIDIA 창립자 겸 CEO
-  - 조 무어 (Joe Moore) - Morgan Stanley 애널리스트
-  - 딜런 파텔 (Dylan Patel) - SemiAnalysis 수석 애널리스트
-  - 브루스 루 (Bruce Lu) - 골드만삭스/대만 애널리스트 겸 프리게임 쇼 공동 진행자
-  - 프랭크 리 (Frank Lee) - HSBC 애널리스트
-  - C.J. - Radical 애널리스트
-  - 기예르메 (Guilherme) - 브라질 기관 투자자
-  - 제이 골드버그 (Jay Goldberg) - Seaport 애널리스트
-  - 닉 그리핀 (Nick Griffin) - Munro Partners 기관 투자자
-  - 짐 슈나이더 (Jim Schneider) - Goldman Sachs 애널리스트
-  - 랜디 아브람스 (Randy Abrams) - UBS 애널리스트
-  - 켄 호 (Ken Ho) - Bocom 애널리스트
-  - 루이스 미시오시아 (Louis Miscioscia) - Daiwa Capital Markets 애널리스트
+- 젠슨 황 (Jensen Huang) - NVIDIA 창립자 겸 CEO
+- 조 무어 (Joe Moore) - Morgan Stanley 애널리스트
+- 딜런 파텔 (Dylan Patel) - SemiAnalysis 수석 애널리스트
+- 브루스 루 (Bruce Lu) - 골드만삭스/대만 애널리스트 겸 프리게임 쇼 공동 진행자
+- 프랭크 리 (Frank Lee) - HSBC 애널리스트
+- C.J. - Radical 애널리스트
+- 기예르메 (Guilherme) - 브라질 기관 투자자
+- 제이 골드버그 (Jay Goldberg) - Seaport 애널리스트
+- 닉 그리핀 (Nick Griffin) - Munro Partners 기관 투자자
+- 짐 슈나이더 (Jim Schneider) - Goldman Sachs 애널리스트
+- 랜디 아브람스 (Randy Abrams) - UBS 애널리스트
+- 켄 호 (Ken Ho) - Bocom 애널리스트
+- 루이스 미시오시아 (Louis Miscioscia) - Daiwa Capital Markets 애널리스트
+</details>
 
 ▌ 개회사 및 주주 환원 정책 발표: 젠슨 황 (Jensen Huang - NVIDIA 창립자 겸 CEO)
 
