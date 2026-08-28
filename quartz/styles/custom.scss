@@ -1789,3 +1789,38 @@ html, body {
     scroll-margin-top: 4rem !important;
   }
 }
+
+
+/* --- 8-25. 양쪽 정렬 시 띄어쓰기 벌어짐 해소 ----------------------------------
+   증상: 오른쪽 끝은 맞았는데 단어 사이가 과하게 벌어진다.
+   원인: word-break: keep-all 이 한글 어절을 절대 쪼개지 않기 때문에,
+        줄 끝에 어절 하나가 안 들어가면 그 줄의 공백을 전부 늘려서 폭을 맞춘다.
+        어절이 길수록 남는 공간이 커지고, 그만큼 띄어쓰기가 벌어진다.
+   해결: 본문 한정으로 어절 보존을 풀어 음절 단위 줄바꿈을 허용한다.
+        줄이 거의 꽉 차게 채워지므로 늘려야 할 공백이 사라진다.
+        (한국어 조판의 전통 방식 — 종이책이 이렇게 조판된다)
+   제목·표·메타는 어절이 잘리면 어색하므로 keep-all + 좌측 정렬을 유지한다. */
+@media all and #{$mobile} {
+  article p,
+  article li,
+  article blockquote {
+    text-align: justify !important;
+    word-break: normal !important;      /* keep-all 해제 → 음절 단위 줄바꿈 */
+    line-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-justify: auto !important;
+    hyphens: none !important;
+  }
+
+  /* 제목·표·메타는 어절 보존 유지 */
+  article h1, article h2, article h3, article h4,
+  .table-scroll th, .table-scroll td,
+  .content-meta, .breadcrumb-container,
+  .sidebar.right .note-properties-value {
+    word-break: keep-all !important;
+    text-align: left !important;
+  }
+
+  /* 목록 첫 줄의 대괄호 라벨이 혼자 떨어지지 않게 */
+  article li { text-wrap: pretty; }
+}
