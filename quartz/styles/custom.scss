@@ -1498,86 +1498,71 @@ article .markdown-preview-view > *:first-child {
 }
 
 
-/* --- 8-20. 재무 표: 지표명 열 고정 (가로 스크롤 경험 개선) --------------------
-   문제: 분기 열이 늘어나면 표가 화면을 넘어가고, 가로로 밀면
-        왼쪽 지표명(Adj. GP / Adj. OPM …)이 화면 밖으로 사라져
-        지금 보고 있는 숫자가 무슨 항목인지 알 수 없다.
-        글자를 줄이면 숫자 가독성이 무너지므로 축소는 해법이 아니다.
-   해결: (1) 첫 열(지표명)을 sticky 로 고정해 스크롤해도 항상 보이게 하고
-        (2) 헤더 행도 고정해 어느 분기인지 유지하며
-        (3) 데스크톱에서는 표만 본문 글줄 폭 밖으로 넓혀 스크롤 자체를 줄인다. */
+/* --- 8-20. 재무 표: 스크롤 래퍼 + 지표명 열 고정 ------------------------------
+   앞선 시도(table 자체에 display:block + overflow-x)는 실패했다.
+   table 을 block 으로 만들면 내부 표 레이아웃이 깨져 sticky 첫 열이 잘린다.
+   정석대로 표를 감싸는 스크롤 컨테이너(.table-scroll)를 두고,
+   표는 정상 table 로 유지한 채 첫 열만 고정한다.
+   (래퍼는 Head.tsx 의 스크립트가 런타임에 삽입한다) */
 
-/* 표를 감싸는 스크롤 컨테이너 */
-article table {
-  display: block !important;
-  overflow-x: auto !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
 
-article table thead,
-article table tbody { display: table !important; width: 100% !important; }
+.table-scroll > table {
+  display: table !important;
+  width: max-content !important;
+  min-width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: visible !important;
+}
 
-/* 첫 열 = 지표명: 가로 스크롤해도 왼쪽에 고정 */
-article table th:first-child,
-article table td:first-child {
+/* 첫 열(지표명) 고정 — 가로로 밀어도 항상 보인다 */
+.table-scroll th:first-child,
+.table-scroll td:first-child {
   position: sticky !important;
   left: 0 !important;
   z-index: 2 !important;
   background-color: var(--light) !important;
   text-align: left !important;
   white-space: nowrap !important;
-  /* 고정 열과 스크롤 영역 경계 */
   box-shadow: 1px 0 0 var(--rule) !important;
 }
 
-:root[saved-theme="dark"] article table th:first-child,
-:root[saved-theme="dark"] article table td:first-child {
-  background-color: var(--dark, #17181c) !important;
+:root[saved-theme="dark"] .table-scroll th:first-child,
+:root[saved-theme="dark"] .table-scroll td:first-child {
+  background-color: #0d1117 !important;
 }
 
-/* 헤더 행 고정 (세로로 긴 표에서 분기 라벨 유지) */
-article table thead th {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 3 !important;
-  background-color: var(--light) !important;
-}
-article table thead th:first-child { z-index: 4 !important; }
-
-:root[saved-theme="dark"] article table thead th {
-  background-color: var(--dark, #17181c) !important;
-}
-
-/* 숫자 열은 우측 정렬 + 자릿수 고정폭 → 읽기 쉬움 */
-article table td:not(:first-child),
-article table th:not(:first-child) {
+/* 숫자 열: 우측 정렬 + 자릿수 고정폭 */
+.table-scroll td:not(:first-child),
+.table-scroll th:not(:first-child) {
   text-align: right !important;
   font-variant-numeric: tabular-nums !important;
   white-space: nowrap !important;
 }
 
-/* 데스크톱: 본문 글줄은 44rem 유지, 표만 좌우로 더 넓게 써서 스크롤을 줄인다 */
+/* 데스크톱에서는 표만 본문 글줄 폭 밖으로 넓혀 스크롤 자체를 줄인다 */
 @media all and #{$desktop} {
-  article table {
-    width: calc(100% + 7rem) !important;
-    max-width: calc(100% + 7rem) !important;
-    margin-left: -3.5rem !important;
-    margin-right: -3.5rem !important;
+  article > .table-scroll {
+    width: calc(100% + 7rem);
+    max-width: calc(100% + 7rem);
+    margin-left: -3.5rem;
+    margin-right: -3.5rem;
   }
 }
 
-/* 모바일: 셀 여백을 조금만 줄여 열을 더 담되 글자 크기는 유지 */
 @media all and #{$mobile} {
-  article table { font-size: 0.84rem !important; }
-  article table th,
-  article table td { padding: 0.45rem 0.55rem !important; }
+  .table-scroll > table { font-size: 0.84rem !important; }
+  .table-scroll th, .table-scroll td { padding: 0.45rem 0.55rem !important; }
 }
-
 
 /* --- 8-21. 우측 '문서 정보' 패널 -----------------------------------------------
    프론트매터(ticker / company / event)를 우측에 렌더링한다.
@@ -1605,13 +1590,25 @@ article table th:not(:first-child) {
   &::-webkit-details-marker { display: none !important; }
   &::marker { content: none !important; }
 
+  /* 플러그인이 ::before 로 접기 화살표(rotate(45deg))를 그린다.
+     여기에 텍스트를 넣으면 그 회전이 글자에 걸려 사선으로 찍힌다.
+     화살표는 숨기고, 라벨은 ::after 로 따로 넣는다. */
   &::before {
+    content: none !important;
+    display: none !important;
+    transform: none !important;
+    border: none !important;
+  }
+
+  &::after {
     content: "문서 정보";
+    display: block;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-faint);
+    transform: none;
   }
 }
 .sidebar.right .note-properties-title,
@@ -1620,6 +1617,7 @@ article table th:not(:first-child) {
 /* 표 → 라벨/값 2열, 테두리 없음 */
 .sidebar.right .note-properties-table {
   display: table !important;
+  table-layout: auto !important;   /* 기본 fixed 는 라벨 열을 무너뜨린다 */
   width: 100% !important;
   border-collapse: collapse !important;
   margin: 0 !important;
@@ -1640,7 +1638,7 @@ article table th:not(:first-child) {
   text-transform: capitalize !important;
   white-space: nowrap !important;
   vertical-align: top !important;
-  width: 1% !important;
+  width: 33% !important;          /* 플러그인 기본 35% 유지 (fixed 레이아웃과 충돌 방지) */
   position: static !important;
   box-shadow: none !important;
 }
@@ -1670,5 +1668,124 @@ article table th:not(:first-child) {
   .sidebar.right details.note-properties {
     margin: 1.5rem 0 0 !important;
     font-size: 0.78rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   8-22. 세로 리듬 규칙 (Vertical Rhythm)
+   --------------------------------------------------------------------------
+   원칙: 간격은 "얼마나 띄우나"가 아니라 "무엇을 한 덩어리로 묶느냐"로 정한다.
+     · 제목은 자기 아래 내용과 붙는다 (위 여백 크게 / 아래 여백 작게)
+     · 덩어리와 덩어리 사이는 넓게 벌린다
+     · 같은 덩어리 안(불릿끼리)은 촘촘하게 붙인다
+     · 연속된 제목(H2 바로 뒤 H3)은 사이를 줄인다
+   Earnings 노트가 H2(대섹션) → H3(소제목) → 불릿 구조라 이 규칙이 그대로 적용된다.
+   ========================================================================== */
+
+article {
+  /* --- 덩어리 사이 (큰 간격) --- */
+  h2 { margin: 2.8rem 0 0.75rem !important; }
+  h3 { margin: 1.9rem 0 0.5rem !important; }
+  h4 { margin: 1.3rem 0 0.4rem !important; }
+
+  /* --- 제목은 아래 내용과 붙는다: 제목 다음 요소의 위 여백 제거 --- */
+  h2 + *, h3 + *, h4 + * { margin-top: 0 !important; }
+
+  /* --- 연속된 제목은 사이를 줄인다 (H2 → H3 가 바로 이어질 때) --- */
+  h2 + h3 { margin-top: 0.9rem !important; }
+  h3 + h4 { margin-top: 0.7rem !important; }
+
+  /* --- 문단 --- */
+  p { margin: 0 0 1.1rem !important; }
+  p:last-child { margin-bottom: 0 !important; }
+
+  /* --- 목록: 블록은 벌리고, 항목끼리는 붙인다 --- */
+  ul, ol {
+    margin: 0 0 1.3rem !important;
+    padding-left: 1.15rem !important;
+  }
+  li {
+    margin: 0 0 0.35rem !important;   /* 항목 사이는 촘촘하게 */
+    line-height: 1.8 !important;
+  }
+  li:last-child { margin-bottom: 0 !important; }
+
+  /* 중첩 목록: 더 촘촘하고 살짝만 들여쓴다 */
+  li > ul, li > ol {
+    margin: 0.3rem 0 0.15rem !important;
+    padding-left: 0.95rem !important;
+  }
+  li > ul > li, li > ol > li {
+    margin-bottom: 0.25rem !important;
+    line-height: 1.72 !important;
+  }
+
+  /* 목록 안 문단(느슨한 목록)도 촘촘하게 */
+  li > p { margin: 0 0 0.3rem !important; }
+
+  /* --- 표 --- */
+  .table-scroll { margin: 1.1rem 0 1.6rem !important; }
+  h2 + .table-scroll,
+  h3 + .table-scroll { margin-top: 0.6rem !important; }
+
+  /* --- 구분선 --- */
+  hr { margin: 2.2rem 0 !important; }
+
+  /* --- 첫 요소는 위 여백 없음 --- */
+  > .markdown-rendered > *:first-child,
+  > *:first-child { margin-top: 0 !important; }
+}
+
+
+/* --- 8-23. Earnings 노트 상단 날짜 중복 제거 -----------------------------------
+   Earnings 노트는 본문 첫 줄에 "2026년 8월 28일" 을 갖고 있는데,
+   제목 아래에 이미 프론트매터 date 가 렌더링되므로 같은 날짜가 두 번 나온다.
+   본문 파일은 건드리지 않고 화면에서만 숨긴다.
+   (Earnings 8개 전부 H1 다음 줄이 날짜인 것을 확인함. 트랜스크립트는 H1 이 없어 영향 없음) */
+article > .markdown-rendered > h1:first-child + p,
+article .markdown-preview-view > h1:first-child + p {
+  display: none !important;
+}
+
+
+@media all and #{$mobile} {
+  article {
+    h2 { margin: 2.3rem 0 0.65rem !important; }
+    h3 { margin: 1.6rem 0 0.45rem !important; }
+    p  { margin-bottom: 1.05rem !important; }
+    li { margin-bottom: 0.35rem !important; line-height: 1.75 !important; }
+  }
+}
+
+
+/* --- 8-24. 모바일 헤더 상시 고정 (sticky 복구) --------------------------------
+   원인: 8-13 에서 가로 밀림을 막으려고 html/body 에 overflow-x: hidden 을 걸었는데,
+        overflow 가 visible 이 아닌 조상은 스크롤 컨테이너가 되어
+        내부의 position: sticky 가 뷰포트가 아닌 그 컨테이너를 기준으로 잡는다.
+        결과적으로 헤더가 따라오지 않고 위로 흘러가 버렸다.
+   해결: overflow-x: clip 으로 교체한다. clip 은 넘침만 잘라내고
+        스크롤 컨테이너를 만들지 않아 sticky 가 그대로 살아 있다. */
+html, body {
+  overflow-x: clip !important;
+}
+
+@media all and #{$mobile} {
+  html, body { overflow-x: clip !important; }
+  #quartz-body { overflow-x: clip !important; }
+
+  .sidebar.left {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background-color: var(--light) !important;
+    border-bottom: 1px solid var(--rule) !important;
+    /* sticky 요소는 자기 조상이 overflow 스크롤 컨테이너가 아니어야 한다 */
+    overflow: visible !important;
+  }
+
+  /* 앵커 이동 시 제목이 고정 헤더 뒤로 숨지 않게 */
+  article h1, article h2, article h3, article h4 {
+    scroll-margin-top: 4rem !important;
   }
 }

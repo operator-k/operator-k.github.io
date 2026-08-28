@@ -143,6 +143,29 @@ export default (() => {
                   closeDrawer(exp);
                 });
 
+                // 넓은 재무 표를 스크롤 래퍼로 감싼다.
+                // table 자체에 overflow-x 를 걸면 표 레이아웃이 깨져
+                // sticky 첫 열이 잘리므로, 감싸는 컨테이너를 만들어 준다.
+                function wrapTables() {
+                  var tables = document.querySelectorAll("article table");
+                  for (var i = 0; i < tables.length; i++) {
+                    var t = tables[i];
+                    var p = t.parentElement;
+                    if (p && p.classList.contains("table-scroll")) continue;
+                    var w = document.createElement("div");
+                    w.className = "table-scroll";
+                    t.parentNode.insertBefore(w, t);
+                    w.appendChild(t);
+                  }
+                }
+
+                if (document.readyState === "loading") {
+                  document.addEventListener("DOMContentLoaded", wrapTables);
+                } else {
+                  wrapTables();
+                }
+                document.addEventListener("nav", wrapTables);
+
                 document.addEventListener("keydown", function (e) {
                   if (e.key !== "Escape") return;
                   var exp = openExplorer();
