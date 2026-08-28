@@ -1824,3 +1824,39 @@ html, body {
   /* 목록 첫 줄의 대괄호 라벨이 혼자 떨어지지 않게 */
   article li { text-wrap: pretty; }
 }
+
+
+/* --- 8-26. 좌측 정렬로 복귀 (양쪽 정렬 철회) ----------------------------------
+   양쪽 정렬을 두 번 시도했으나(8-19 keep-all, 8-25 음절분해) 둘 다 대가가 컸다.
+     · keep-all + justify → 어절이 안 쪼개져 공백을 크게 늘림
+     · normal  + justify → 브라우저가 띄어쓰기를 우선 끊어 여전히 벌어짐
+   브라우저의 양쪽 정렬은 '공백 늘리기'가 전부다. 인쇄 조판처럼 분철·자간 조정을
+   하지 않으므로 좁은 폭 + 한글에서는 반드시 띄어쓰기가 벌어진다.
+
+   웹의 표준은 좌측 정렬이다 (Seeking Alpha, 네이버 블로그, 브런치,
+   Medium, Substack, NYT 모두 좌측 정렬). 오른쪽이 고르지 않은 것은
+   한글 웹의 정상적인 모습이며, 벌어진 띄어쓰기보다 읽기에 방해가 적다.
+
+   → 좌측 정렬 + 어절 보존(keep-all)으로 되돌린다. */
+article p,
+article li,
+article blockquote,
+article td,
+article th {
+  text-align: left !important;
+  text-justify: auto !important;
+  word-break: keep-all !important;      /* 한글 어절 보존 */
+  overflow-wrap: break-word !important;  /* 긴 영문/URL 만 예외적으로 분해 */
+  hyphens: none !important;
+}
+
+@media all and #{$mobile} {
+  article p,
+  article li,
+  article blockquote {
+    text-align: left !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    text-wrap: pretty;                   /* 마지막 줄에 한 단어만 남는 것 방지 */
+  }
+}
