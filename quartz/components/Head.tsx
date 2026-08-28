@@ -109,6 +109,73 @@ export default (() => {
           </>
         )}
 
+        {/* 모바일 탐색기 드로어: 바깥(딤 영역) 탭 / Esc 로 닫기.
+            explorer 플러그인은 햄버거 버튼 클릭만 처리하므로 바깥 탭 닫기를 여기서 보완한다.
+            SPA 네비게이션에도 살아남도록 document 레벨 위임 리스너를 1회만 등록한다. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                if (window.__drawerDismissBound) return;
+                window.__drawerDismissBound = true;
+
+                var MOBILE = "(max-width: 800px)";
+
+                function closeDrawer(exp) {
+                  exp.classList.add("collapsed");
+                  exp.setAttribute("aria-expanded", "false");
+                  document.documentElement.classList.remove("mobile-no-scroll");
+                }
+
+                function openExplorer() {
+                  if (!window.matchMedia(MOBILE).matches) return null;
+                  return document.querySelector(".sidebar.left .explorer:not(.collapsed)");
+                }
+
+                document.addEventListener("click", function (e) {
+                  var exp = openExplorer();
+                  if (!exp) return;
+                  var t = e.target;
+                  if (!(t instanceof Element)) return;
+                  // 드로어 내부 클릭이나 햄버거 버튼 클릭은 그대로 둔다
+                  if (t.closest(".explorer-content")) return;
+                  if (t.closest(".explorer-toggle, .mobile-explorer")) return;
+                  closeDrawer(exp);
+                });
+
+                // 넓은 재무 표를 스크롤 래퍼로 감싼다.
+                // table 자체에 overflow-x 를 걸면 표 레이아웃이 깨져
+                // sticky 첫 열이 잘리므로, 감싸는 컨테이너를 만들어 준다.
+                function wrapTables() {
+                  var tables = document.querySelectorAll("article table");
+                  for (var i = 0; i < tables.length; i++) {
+                    var t = tables[i];
+                    var p = t.parentElement;
+                    if (p && p.classList.contains("table-scroll")) continue;
+                    var w = document.createElement("div");
+                    w.className = "table-scroll";
+                    t.parentNode.insertBefore(w, t);
+                    w.appendChild(t);
+                  }
+                }
+
+                if (document.readyState === "loading") {
+                  document.addEventListener("DOMContentLoaded", wrapTables);
+                } else {
+                  wrapTables();
+                }
+                document.addEventListener("nav", wrapTables);
+
+                document.addEventListener("keydown", function (e) {
+                  if (e.key !== "Escape") return;
+                  var exp = openExplorer();
+                  if (exp) closeDrawer(exp);
+                });
+              })();
+            `,
+          }}
+        />
+
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")
