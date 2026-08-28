@@ -15,23 +15,8 @@ tags:
 - 기업명: Marvell Technology, Inc. (MRVL)
 - 실적 시즌: Q2 FY2027 (2026년 8월 27일 발표)
 - 문서 유형: 한글 전문 번역 (Full Translation)
-- 참석자 및 발표자:
-  - 맷 머피 (Matt Murphy) - Marvell 이사회 의장 겸 최고경영자(Chairman and CEO)
-  - 댄 던 (Dan Durn) - Marvell 최고재무책임자(CFO)
-  - 크리스 쿱만스 (Chris Koopmans) - Marvell 사장 겸 최고운영책임자(President and COO)
-  - 산딥 바라티 (Sandeep Bharathi) - Marvell 데이터센터 그룹 사장(President of Data Center Group)
-  - 로스 세이모어 (Ross Seymore) - Marvell IR 수석 부사장(SVP of Investor Relations)
-  - 오퍼레이터 (Operator)
-  - 애널리스트 질의자:
-    - 톰 오말리 (Tom O'Malley - Barclays)
-    - 할란 서 (Harlan Sur - JPMorgan)
-    - 비벡 아리아 (Vivek Arya - Bank of America Securities)
-    - 애런 레이커스 (Aaron Rakers - Wells Fargo)
-    - 조 무어 (Joe Moore - Morgan Stanley)
-    - 벤 라이체스 (Ben Reitzes - Melius Research)
-    - C.J. 뮤즈 (C.J. Muse - Cantor Fitzgerald)
-    - 제임스 슈나이더 (James Schneider - Goldman Sachs)
-    - 퀸 볼튼 (Quinn Bolton - Needham & Company)
+- 경영진 발표자: 맷 머피(이사회 의장 겸 CEO), 댄 던(CFO), 크리스 쿱만스(사장 겸 COO), 산딥 바라티(데이터센터 그룹 사장), 로스 세이모어(IR 수석 부사장), 오퍼레이터
+- 애널리스트 질의자: 톰 오말리(Barclays), 할란 서(JPMorgan), 비벡 아리아(BofA), 애런 레이커스(Wells Fargo), 조 무어(Morgan Stanley), 벤 라이체스(Melius), C.J. 뮤즈(Cantor), 제임스 슈나이더(Goldman Sachs), 퀸 볼튼(Needham)
 
 ▌ 개회사 및 IR 공시: 로스 세이모어 (Ross Seymore - IR 수석 부사장)
 
