@@ -188,6 +188,18 @@ plugins:
       position: left
       priority: 35
       group: toolbar
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 10
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    options:
+      showReadingTime: false
+    layout:
+      position: beforeBody
+      priority: 20
   - source: "@quartz-community/breadcrumbs"
     enabled: true
     options:
@@ -208,8 +220,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        GitHub: https://github.com/operator-k
     layout:
       position: footer
       priority: 50
@@ -242,19 +253,18 @@ plugins:
     options:
       includeAll: false
       includedProperties:
-        - description
-        - tags
-        - aliases
+        - ticker
+        - company
+        - event
       excludedProperties: []
-      hidePropertiesView: true
+      hidePropertiesView: false
       delimiters: ---
       language: yaml
     order: 5
     layout:
-      position: beforeBody
-      priority: 15
+      position: right
+      priority: 20
       display: all
-      condition: not-index
   - source: "@quartz-community/obsidian-plugin-excalidraw"
     enabled: true
     options:

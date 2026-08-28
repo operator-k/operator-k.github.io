@@ -10,15 +10,6 @@ tags:
   - event/keynote
 ---
 
-<details class="transcript-meta-box">
-<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
-
-- 기업명: NVIDIA Corporation (NVDA)
-- 행사명: SIGGRAPH 2026 Research Keynote (2026년 8월)
-- 문서 유형: 한글 전문 번역 (Full Translation)
-- 경영진 발표자: 크리스 레드먼(SIGGRAPH 2026 컨퍼런스 의장, Apple), 젠슨 황(CEO), 에드워드 류(NVIDIA 응용 딥러닝 연구 디렉터), 가브 레오네(NVIDIA 크리에이티브 아티스트), 닐 애쉬턴(NVIDIA 수석 엔지니어 (Distinguished Engineer)), 밍유 류(부사장 (VP of Cosmos Lab)), 앤디(NVIDIA 데모 프레젠터)
-</details>
-
 ▌ 환영사: 크리스 레드먼 (Chris Redmann - SIGGRAPH 2026 컨퍼런스 의장, Apple)
 
 크리스 레드먼(Chris Redmann - SIGGRAPH 2026 컨퍼런스 의장, Apple): 환영합니다. 컴퓨터 그래픽스가 새로운 시대로 접어들고 있으며, SIGGRAPH는 그 미래가 뚜렷하게 초점을 맞추는 장소로 변함없이 자리하고 있습니다. 컴퓨터 그래픽스의 모든 세대마다 결정적인 순간들이 존재해 왔습니다. 지금이 바로 그 순간 중 하나입니다. 30년이 넘는 세월 동안 엔비디아는 프로그래머블 셰이딩 GPU부터 RTX, 그리고 옴니버스(Omniverse)에 이르기까지 업계를 재편한 혁신들을 선보이며 SIGGRAPH 커뮤니티의 일원으로 함께해 왔습니다. 오늘날 그래픽스, 시뮬레이션, 그리고 AI가 융합되어 차세대 창작 도구, 디지털 트윈, 그리고 피지컬 AI(Physical AI)를 위한 토대를 놓으면서 그 유산은 계속 이어지고 있습니다. 2026 SIGGRAPH 리서치 키노트 무대로 엔비디아를 맞이하는 데 함께해 주시기 바랍니다.
