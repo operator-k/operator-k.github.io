@@ -1034,9 +1034,9 @@ article hr {
       content: "";
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.42);
-      z-index: 99999;          /* 드로어(100000)보다 한 단계 아래 */
-      pointer-events: auto;
+      background: transparent;  /* 흐린 막·그라데이션 없음 */
+      z-index: 99999;           /* 드로어(100000)보다 한 단계 아래 */
+      pointer-events: auto;     /* 보이지 않지만 탭은 받는다 → 바깥 탭 닫기 */
       cursor: pointer;
     }
 
@@ -1046,4 +1046,271 @@ article hr {
       ul { padding-left: 0.55rem !important; margin-left: 0.3rem !important; }
     }
   }
+}
+
+
+/* --- 8-11. 햄버거 ⇄ X 전환 (SA 방식) ----------------------------------------
+   문제 1: 드로어(z-index 100000)가 헤더(9999)를 덮어 햄버거가 사라졌다.
+   문제 2: 열릴 때 position:fixed로 바꾸니 버튼이 미세하게 튀고 전환이 끊겼다.
+
+   해결: 버튼은 헤더 안 제자리에 그대로 두고(position 변경 없음) z-index만 올린다.
+        햄버거 SVG와 X 막대를 항상 겹쳐 두고 opacity/rotate로 크로스페이드해서
+        같은 자리에서 부드럽게 모양만 바뀌게 한다. 위치 이동이 없으니 튀지 않는다. */
+@media all and #{$mobile} {
+  .sidebar.left .explorer {
+
+    .mobile-explorer {
+      position: relative !important;   /* 열림/닫힘 모두 동일 — 자리 이동 없음 */
+      z-index: 100001 !important;      /* 드로어(100000) 위로 */
+      width: 32px !important;
+      height: 32px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      /* 햄버거 아이콘 */
+      svg {
+        display: block !important;
+        opacity: 1;
+        transform: rotate(0deg);
+        transition: opacity 0.16s ease, transform 0.22s ease;
+      }
+
+      /* X 막대 — 평소엔 투명하게 겹쳐만 둔다 */
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 19px;
+        height: 2px;
+        border-radius: 1px;
+        background: var(--ink);
+        opacity: 0;
+        transition: opacity 0.16s ease, transform 0.22s ease;
+      }
+      &::before { transform: translate(-50%, -50%) rotate(0deg); }
+      &::after  { transform: translate(-50%, -50%) rotate(0deg); }
+    }
+
+    /* 열린 상태: 햄버거는 사라지며 살짝 돌고, X가 제자리에서 펼쳐진다 */
+    &:not(.collapsed) .mobile-explorer {
+      svg {
+        opacity: 0;
+        transform: rotate(90deg);
+      }
+      &::before {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+
+    /* X 아래로 트리가 파고들지 않게 상단 여백 확보 */
+    &:not(.collapsed) > .explorer-content {
+      padding-top: 3.6rem !important;
+    }
+  }
+}
+
+
+/* --- 8-12. 헤더 흐림 효과 제거 -----------------------------------------------
+   .sidebar.left 의 backdrop-filter: blur(10px) 가
+   (1) 헤더 아래 콘텐츠를 뿌옇게 만들고
+   (2) fixed 자식(드로어)의 기준 박스를 헤더로 가둬 위치를 틀어놓는다.
+   불투명 배경만 쓰면 둘 다 해결된다. */
+@media all and #{$mobile} {
+  .sidebar.left {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: var(--light) !important;
+  }
+}
+
+
+/* --- 8-13. 모바일 좌우 거터 통일 ---------------------------------------------
+   증상: 본문·구분선·푸터가 오른쪽으로 치우쳐 좌우 여백이 비대칭이었다.
+   원인 두 가지
+     (1) #quartz-body 의 max-width: 100vw
+         → 100vw 는 스크롤바 폭을 포함하는 값이라 실제 표시 영역보다 넓어진다.
+           overflow-x: hidden 과 겹치면 콘텐츠가 우측으로 밀려 잘린다.
+     (2) 거터가 두 레벨에 나뉘어 걸림
+         헤더는 #quartz-body(1rem) + .sidebar.left(1.2rem) = 2.2rem,
+         본문은 #quartz-body(1rem) 뿐 → 좌우 기준선이 애초에 달랐다.
+   해결: 바깥 컨테이너의 padding 을 걷어내고,
+        헤더 / 본문 / 푸터가 같은 값(--gutter)을 각자 직접 갖게 한다. */
+@media all and #{$mobile} {
+  :root { --gutter: 1.15rem; }
+
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+
+  .page { max-width: 100% !important; }
+
+  #quartz-body {
+    width: 100% !important;
+    max-width: 100% !important;   /* 100vw → 100% (스크롤바 폭 밀림 제거) */
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 헤더 · 본문 · 푸터가 완전히 같은 거터를 갖는다 */
+  .sidebar.left,
+  .center,
+  footer {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: var(--gutter) !important;
+    padding-right: var(--gutter) !important;
+  }
+
+  /* 안쪽 요소는 추가 여백을 갖지 않는다 (이중 들여쓰기 방지) */
+  article,
+  .center > *,
+  .breadcrumb-container,
+  .page-header {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 리스트 불릿만 예외 — 들여쓰기가 필요하다 */
+  article ul,
+  article ol { padding-left: 1.15rem !important; }
+}
+
+
+/* --- 8-14. 목록 항목: 박스 완전 제거 ------------------------------------------
+   원인 두 가지
+     (1) 기존 §5 의 다크모드 규칙 [saved-theme=dark] ul.section-ul li.section-li
+         가 특이도 (0,3,3) 으로 내 (0,2,2) 규칙을 이겨 테두리·배경이 살아남았다.
+         → 같은 다크모드 프리픽스를 붙여 특이도를 넘긴다.
+     (2) 8-3 의 .tags 규칙(display:flex + border-bottom + padding)이
+         Quartz가 목록 안에서 일부러 숨겨둔 태그를 다시 켜서
+         항목 아래가 잘린 것처럼 보였다. → 목록 안 태그는 다시 숨긴다.
+
+   지향: 박스도 그림자도 없는 글 목록. 누를 때 뜨거나 눌리는 효과 없이
+        글자 색만 바뀐다. 탭 영역은 여백으로 충분히 확보한다. */
+
+/* 라이트·다크 공통 */
+.recent-notes .recent-li,
+ul.section-ul li.section-li,
+:root[saved-theme="dark"] .recent-notes .recent-li,
+:root[saved-theme="dark"] ul.section-ul li.section-li {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0.85rem 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* 항목 사이 구분은 아주 얇은 선 하나만 */
+.recent-notes .recent-li + .recent-li,
+ul.section-ul li.section-li + li.section-li,
+:root[saved-theme="dark"] .recent-notes .recent-li + .recent-li,
+:root[saved-theme="dark"] ul.section-ul li.section-li + li.section-li {
+  border-top: 1px solid var(--rule-soft) !important;
+}
+
+/* 호버·클릭 시 떠오르거나 눌리는 효과 제거 — 글자 색만 반응 */
+.recent-notes .recent-li:hover,
+.recent-notes .recent-li:active,
+ul.section-ul li.section-li:hover,
+ul.section-ul li.section-li:active,
+:root[saved-theme="dark"] .recent-notes .recent-li:hover,
+:root[saved-theme="dark"] ul.section-ul li.section-li:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+/* 제목 — 밑줄 없음, 링크 알약 없음 */
+.recent-li .desc h3 a,
+.section-li .desc h3 a,
+.recent-li a.internal,
+.section-li a.internal,
+article .section-li a.internal,
+article .recent-li a.internal {
+  background: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  text-decoration: none !important;
+  font-size: 1.0rem !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  word-break: keep-all !important;
+}
+
+/* 목록 안 태그는 숨긴다 (Quartz 기본 동작 복구).
+   8-3 의 .tags 규칙이 이걸 다시 켜서 항목이 잘려 보였다. */
+li.section-li .tags,
+li.section-li ul.tags,
+.recent-li .tags,
+.recent-li ul.tags,
+.section > .tags {
+  display: none !important;
+}
+
+/* 날짜는 제목 위 작은 회색 한 줄 */
+.recent-li .meta,
+.section-li .meta {
+  font-size: 0.75rem !important;
+  color: var(--ink-faint) !important;
+  margin: 0 0 0.15rem !important;
+  opacity: 1 !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 한 항목을 세로 스택으로 (날짜 → 제목) */
+li.section-li > .section,
+.recent-li > .section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  grid-template-columns: none !important;
+}
+li.section-li > .section > .desc,
+.recent-li > .section > .desc { width: 100% !important; }
+
+
+/* --- 8-15. 탐색기 세로 안내선 제거 -------------------------------------------
+   기존 §2 의 .explorer ul { border-left: 1px solid var(--lightgray) } 제거.
+   indent guide 는 깊은 트리에서 depth 추적용으로 쓰는 장치인데,
+   여기 트리는 최대 3단 · 종목 10개라 들여쓰기만으로 충분히 읽힌다.
+   최상위 목록 전체에 한 줄로 그어져 구조 정보 없이 세로 장식으로만 남아 있었다.
+   깊이는 들여쓰기 폭으로만 표현한다. */
+.explorer ul,
+.explorer .explorer-ul,
+.sidebar.left .explorer ul {
+  border-left: none !important;
+  margin-left: 0 !important;
+  padding-left: 0.75rem !important;
+}
+
+/* 최상위 목록은 들여쓰기 없이 왼쪽 정렬 */
+.explorer > ul,
+.explorer > .explorer-ul,
+.explorer .explorer-content > ul {
+  padding-left: 0 !important;
 }

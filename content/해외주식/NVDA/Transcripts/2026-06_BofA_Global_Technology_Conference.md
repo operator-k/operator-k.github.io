@@ -10,17 +10,6 @@ tags:
   - event/conference
 ---
 
-<details class="transcript-meta-box">
-<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
-
-- 기업명: NVIDIA Corporation (NVDA)
-- 행사명: Bank of America 2026 Global Technology Conference (2026년 6월)
-- 문서 유형: 한글 전문 번역 (Full Translation)
-- 대담자:
-- 비벡 아리아 (Vivek Arya) - BofA Securities 주식 리서치 전무이사 (Managing Director in Equity Research)
-- 콜렛 크레스 (Colette Kress) - NVIDIA 수석 부사장 겸 최고재무책임자 (EVP and CFO, NVIDIA)
-</details>
-
 ▌ 개회 및 GTC 타이베이 주요 발표 하이라이트
 
 비벡 아리아(Vivek Arya - BofA Securities): 글로벌 테크놀로지 컨퍼런스에 오신 것을 환영합니다. 저는 반도체 및 반도체 장비 섹터를 담당하는 비벡 아리아입니다. 오늘 아침 GTC 타이베이(GTC Taipei)의 수많은 주요 발표 직후 엔비디아의 수석 부사장이자 CFO이신 콜렛 크레스(Colette Kress)를 키노트 세션에 모시게 되어 대단히 기쁘고 영광입니다. 콜렛, 엔비디아가 발표한 내용과 그것이 귀사의 전략적 방향과 어떻게 부합하는지에 대해 간략히 설명해 주시면서 시작해 주시면, 이후 몇 가지 질문으로 들어가 보도록 하겠습니다. 오늘 참석해 주셔서 대단히 감사합니다.
