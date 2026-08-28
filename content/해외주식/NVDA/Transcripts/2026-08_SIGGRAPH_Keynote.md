@@ -15,14 +15,7 @@ tags:
 - 기업명: NVIDIA Corporation (NVDA)
 - 행사명: SIGGRAPH 2026 Research Keynote (2026년 8월)
 - 문서 유형: 한글 전문 번역 (Full Translation)
-- 참석자 및 발표자:
-  - 크리스 레드먼 (Chris Redmann) - SIGGRAPH 2026 컨퍼런스 의장, Apple
-  - 젠슨 황 (Jensen Huang) - NVIDIA 창립자 겸 CEO
-  - 에드워드 류 (Edward Liu) - NVIDIA 응용 딥러닝 연구 디렉터
-  - 가브 레오네 (Gab Leone) - NVIDIA 크리에이티브 아티스트
-  - 닐 애쉬턴 (Neil Ashton) - NVIDIA 수석 엔지니어 (Distinguished Engineer)
-  - 밍유 류 (Ming-Yu Liu) - NVIDIA 코스모스 랩 부사장 (VP of Cosmos Lab)
-  - 앤디 (Andy) - NVIDIA 데모 프레젠터
+- 경영진 발표자: 크리스 레드먼(SIGGRAPH 2026 컨퍼런스 의장, Apple), 젠슨 황(CEO), 에드워드 류(NVIDIA 응용 딥러닝 연구 디렉터), 가브 레오네(NVIDIA 크리에이티브 아티스트), 닐 애쉬턴(NVIDIA 수석 엔지니어 (Distinguished Engineer)), 밍유 류(부사장 (VP of Cosmos Lab)), 앤디(NVIDIA 데모 프레젠터)
 
 ▌ 환영사: 크리스 레드먼 (Chris Redmann - SIGGRAPH 2026 컨퍼런스 의장, Apple)
 
