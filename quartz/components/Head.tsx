@@ -109,6 +109,50 @@ export default (() => {
           </>
         )}
 
+        {/* 모바일 탐색기 드로어: 바깥(딤 영역) 탭 / Esc 로 닫기.
+            explorer 플러그인은 햄버거 버튼 클릭만 처리하므로 바깥 탭 닫기를 여기서 보완한다.
+            SPA 네비게이션에도 살아남도록 document 레벨 위임 리스너를 1회만 등록한다. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                if (window.__drawerDismissBound) return;
+                window.__drawerDismissBound = true;
+
+                var MOBILE = "(max-width: 800px)";
+
+                function closeDrawer(exp) {
+                  exp.classList.add("collapsed");
+                  exp.setAttribute("aria-expanded", "false");
+                  document.documentElement.classList.remove("mobile-no-scroll");
+                }
+
+                function openExplorer() {
+                  if (!window.matchMedia(MOBILE).matches) return null;
+                  return document.querySelector(".sidebar.left .explorer:not(.collapsed)");
+                }
+
+                document.addEventListener("click", function (e) {
+                  var exp = openExplorer();
+                  if (!exp) return;
+                  var t = e.target;
+                  if (!(t instanceof Element)) return;
+                  // 드로어 내부 클릭이나 햄버거 버튼 클릭은 그대로 둔다
+                  if (t.closest(".explorer-content")) return;
+                  if (t.closest(".explorer-toggle, .mobile-explorer")) return;
+                  closeDrawer(exp);
+                });
+
+                document.addEventListener("keydown", function (e) {
+                  if (e.key !== "Escape") return;
+                  var exp = openExplorer();
+                  if (exp) closeDrawer(exp);
+                });
+              })();
+            `,
+          }}
+        />
+
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")

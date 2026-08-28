@@ -1004,3 +1004,46 @@ article hr {
   .breadcrumb-container { font-size: 0.72rem !important; }
   .tags { margin-bottom: 1.5rem !important; padding-bottom: 1.1rem !important; }
 }
+
+
+/* --- 8-10. 모바일 드로어 — 화면 2/3만 덮기 -----------------------------------
+   기존: width 100vw / height 100vh 로 화면을 통째로 가려서
+         뒤에 무엇이 있었는지 맥락이 사라지고 닫을 곳이 안 보였다.
+   변경: 드로어는 화면의 약 80%(최대 330px)만 차지하고,
+         나머지는 반투명 딤 레이어로 덮어 본문이 비쳐 보이게 한다. */
+@media all and #{$mobile} {
+  .sidebar.left .explorer {
+
+    &.collapsed > .explorer-content {
+      transform: translateX(-100%) !important;
+    }
+
+    &:not(.collapsed) > .explorer-content {
+      width: min(80vw, 330px) !important;
+      max-width: 330px !important;
+      height: 100dvh !important;
+      padding: 4.2rem 1.25rem 2rem !important;
+      box-shadow: 6px 0 28px rgba(0, 0, 0, 0.22) !important;
+      transition: transform 0.22s ease !important;
+    }
+
+    /* 드로어 뒤 딤 레이어 — 본문이 비쳐 보이고, 탭하면 닫힌다.
+       pointer-events를 켜면 이 영역의 클릭이 호스트(.explorer)에서 잡히고,
+       Head.tsx의 위임 리스너가 드로어를 닫는다. */
+    &:not(.collapsed)::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.42);
+      z-index: 99999;          /* 드로어(100000)보다 한 단계 아래 */
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    /* 드로어 내부 트리는 좁은 폭에 맞춰 줄바꿈 허용 */
+    &:not(.collapsed) > .explorer-content {
+      .folder-title, a { word-break: keep-all !important; white-space: normal !important; }
+      ul { padding-left: 0.55rem !important; margin-left: 0.3rem !important; }
+    }
+  }
+}
