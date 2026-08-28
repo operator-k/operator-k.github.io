@@ -10,6 +10,16 @@ tags:
   - event/earnings-call
 ---
 
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
+
+- 기업명: NVIDIA Corporation (NVDA)
+- 실적 시즌: Q2 FY2027 (2026년 8월 26일 발표)
+- 문서 유형: 한글 전문 번역 (Full Translation)
+- 경영진 발표자: 젠슨 황(사장 겸 최고경영자(CEO)), 콜렛 크레스(부사장 겸 최고재무책임자(CFO)), 토시야 하리(부사장), 티파니(오퍼레이터)
+- 애널리스트 질의자: 조셉 무어 (Joseph Moore(Morgan Stanley)), C.J. 뮤즈 (C.J. Muse(Cantor Fitzgerald)), 스테이시 라스곤 (Stacy Rasgon(Bernstein Research)), 비벡 아리아 (Vivek Arya(BofA Securities)), 티모시 아큐리 (Timothy Arcuri(UBS)), 벤 라이체스 (Ben Reitzes(Melius Research)), 제임스 슈나이더 (James Schneider(Goldman Sachs)), 애런 레이커스 (Aaron Rakers(Wells Fargo))
+</details>
+
 ▌ 개회사 및 재무 공시: 토시야 하리 (Toshiya Hari - IR 및 전략 재무 부사장)
 
 오퍼레이터(Operator - Tiffany): 안녕하십니까. 제 이름은 티파니이며, 오늘 컨퍼런스 진행을 맡았습니다. 이 시간 엔비디아의 2분기 실적 발표 컨퍼런스 콜에 참석해 주신 모든 분을 환영합니다. 배경 소음을 방지하기 위해 모든 회선은 음소거 상태로 설정되었습니다. 발표자들의 발언이 끝난 후 질의응답 세션이 진행될 예정입니다. 이 시간 동안 질문을 원하시는 경우 전화기 키패드의 별표(*)를 누른 후 숫자 1번을 누르시면 됩니다. 질문을 취소하시려면 다시 별표(*)와 1번을 누르시면 됩니다. 감사합니다. 토시야 하리 부사장님, 컨퍼런스를 시작해 주시기 바랍니다.

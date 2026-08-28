@@ -10,6 +10,14 @@ tags:
   - event/earnings-call
 ---
 
+<details class="transcript-meta-box">
+<summary>📋 실적 발표 개요 및 참석자 명단 (터치하여 열기)</summary>
+
+- 기업명: Alibaba Group Holding Limited (BABA)
+- 실적 시즌: FY2027 1Q (2026년 6월 결산 분기)
+- 문서 유형: 100% 한글 전문 번역 (Full Text Translation)
+</details>
+
 ▌ 개회사 및 IR 안내
 
 오퍼레이터(Operator): 안녕하십니까, 여러분. 대기해 주셔서 감사합니다. 알리바바 그룹의 2026년 6월 분기 실적 컨퍼런스 콜에 오신 것을 환영합니다. 현재 모든 참가자는 청취 전용 모드로 연결되어 있습니다. 경영진의 준비된 발언 이후 질의응답(Q&A) 세션이 진행될 예정입니다. 이제 알리바바 그룹 IR 총괄인 리디아 류(Lydia Liu) 님께 마이크를 넘기겠습니다. 말씀해 주십시오.
