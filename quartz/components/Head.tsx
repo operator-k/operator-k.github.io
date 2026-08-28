@@ -93,6 +93,22 @@ export default (() => {
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
 
+        {cfg.analytics?.provider === "google" && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${cfg.analytics.tagId}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${cfg.analytics.tagId}');
+                `,
+              }}
+            />
+          </>
+        )}
+
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")
