@@ -3,7 +3,7 @@ title: COHR The Six Five Summit AI Unleashed 2026
 date: 2026-08-29
 ticker: COHR
 company: Coherent Corp.
-event: The Six Five Summit: AI Unleashed 2026
+event: "The Six Five Summit: AI Unleashed 2026"
 tags:
   - transcripts
   - ticker/COHR
