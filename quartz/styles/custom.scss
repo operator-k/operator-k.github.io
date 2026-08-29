@@ -1860,3 +1860,92 @@ article th {
     text-wrap: pretty;                   /* 마지막 줄에 한 단어만 남는 것 방지 */
   }
 }
+
+
+/* --- 8-27. 웜 뉴트럴 팔레트 (Claude 계열) --------------------------------------
+   기존 색은 Tailwind 기본 회색(#9ca3af, #374151 …)으로 푸른기가 돌아
+   화면 전체가 차갑고 하얗게 느껴졌다.
+   배경을 순백(#fcfcfc)에서 종이 톤(#faf9f5)으로 내리고,
+   회색 계열을 전부 노란기 도는 웜 그레이로 바꿔 눈이 덜 피로하게 한다.
+   8-1 에서 정의한 자체 토큰(--ink 계열)도 같은 계열로 맞춘다. */
+:root {
+  --ink:        #1f1e1d;   // 본문 (웜 블랙)
+  --ink-soft:   #55504a;   // 보조
+  --ink-faint:  #8d8879;   // 최약
+  --rule:       rgba(31, 30, 29, 0.11);
+  --rule-soft:  rgba(31, 30, 29, 0.06);
+  --accent:     #c96442;   // 클로드 클레이 — 아주 드물게만
+}
+
+:root[saved-theme="dark"] {
+  --ink:        #f2f0ea;
+  --ink-soft:   #b5b0a5;
+  --ink-faint:  #8c877c;
+  --rule:       rgba(242, 240, 234, 0.14);
+  --rule-soft:  rgba(242, 240, 234, 0.07);
+  --accent:     #d97757;
+}
+
+/* 링크 호버에만 악센트를 쓴다 (평상시는 무채색 유지) */
+a:hover,
+a.internal:hover,
+.recent-notes .recent-li:hover a.internal,
+ul.section-ul li.section-li:hover a.internal,
+:root[saved-theme="dark"] .recent-notes .recent-li:hover a.internal,
+:root[saved-theme="dark"] ul.section-ul li.section-li:hover a.internal {
+  color: var(--accent) !important;
+}
+
+/* 표 고정 열 배경도 새 배경색에 맞춘다 */
+.table-scroll th:first-child,
+.table-scroll td:first-child { background-color: #faf9f5 !important; }
+:root[saved-theme="dark"] .table-scroll th:first-child,
+:root[saved-theme="dark"] .table-scroll td:first-child { background-color: #262624 !important; }
+
+/* 모바일 헤더 배경 */
+@media all and #{$mobile} {
+  .sidebar.left { background-color: var(--light) !important; }
+}
+
+
+/* --- 8-28. 탐색기 접힘 상태에서 제목 잘림 수정 ---------------------------------
+   원인 두 가지가 겹쳤다.
+     (1) 플러그인이 접힘 상태에 고정 높이를 준다:
+         .explorer { overflow-y: hidden; min-height: 1.2rem }
+         .explorer.collapsed { flex: 0 1 1.2rem }
+         → 1.2rem 은 "Explorer" 글자 높이보다 작아 위아래가 잘린다.
+     (2) 8-7 에서 .explorer 자체에 overflow-x: hidden 을 걸었는데,
+         한 축이 visible 이 아니면 다른 축도 강제로 잘리는 박스가 된다.
+   해결: 스크롤 제어는 안쪽(.explorer-content, ul)에만 두고,
+        .explorer 컨테이너는 내용 높이만큼 자라게 한다. */
+.sidebar.left .explorer {
+  overflow: visible !important;
+  min-height: auto !important;
+  flex: 0 0 auto !important;
+}
+
+.sidebar.left .explorer.collapsed {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* 스크롤 숨김은 안쪽 요소에만 적용 */
+.sidebar.left .explorer .explorer-content,
+.sidebar.left .explorer ul {
+  overflow-x: hidden !important;
+  scrollbar-width: none !important;
+  &::-webkit-scrollbar { display: none !important; height: 0 !important; }
+}
+
+/* 제목 줄 자체에 여유를 줘서 디센더(p, y)가 안 잘리게 */
+.sidebar.left .explorer .explorer-toggle,
+.sidebar.left .explorer > button,
+.sidebar.left .explorer h1,
+.sidebar.left .explorer h2 {
+  line-height: 1.5 !important;
+  padding-top: 0.15rem !important;
+  padding-bottom: 0.15rem !important;
+  overflow: visible !important;
+  min-height: auto !important;
+}
