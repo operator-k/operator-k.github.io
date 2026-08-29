@@ -158,6 +158,11 @@ plugins:
     enabled: true
   - source: "@quartz-community/tag-page"
     enabled: true
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout:
+      position: left
+      priority: 5
   - source: "@quartz-community/explorer"
     enabled: true
     layout:

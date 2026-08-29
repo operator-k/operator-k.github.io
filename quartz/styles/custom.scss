@@ -1949,3 +1949,58 @@ ul.section-ul li.section-li:hover a.internal,
   overflow: visible !important;
   min-height: auto !important;
 }
+
+
+/* --- 8-29. 홈 진입점 (사이트 워드마크) ----------------------------------------
+   문제: 상세 페이지에서 홈으로 갈 방법이 breadcrumb 의 작은 회색 "Home" 뿐이었다.
+        page-title 플러그인이 config 에서 빠져 있어 사이트 이름조차 표시되지 않았다.
+   결정: 좌측 사이드바 최상단에 워드마크를 두고 그것을 홈 링크로 쓴다.
+        (로고 클릭 = 홈 은 학습이 필요 없는 유일한 관습)
+   반응형:
+     · 데스크톱 — 사이드바 최상단 워드마크
+     · 모바일   — 상단바가 이미 빡빡하므로(햄버거+홈+다크모드+검색)
+                 기존 홈 아이콘을 유지하고 워드마크는 숨긴다 */
+
+.sidebar.left .page-title {
+  margin: 0 0 1.4rem !important;
+  padding: 0 !important;
+  order: -1 !important;          /* 툴바·탐색기보다 위 */
+}
+
+.sidebar.left .page-title h1,
+.sidebar.left .page-title h2,
+.sidebar.left .page-title a {
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.35 !important;
+  color: var(--ink) !important;
+  text-decoration: none !important;
+  background: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  word-break: keep-all !important;
+  display: inline-block !important;
+  transition: color 0.15s ease;
+}
+
+.sidebar.left .page-title a:hover { color: var(--accent) !important; }
+
+/* breadcrumb 의 Home 도 조금 또렷하게 — 보조 진입점 */
+.breadcrumb-container .breadcrumb-element:first-child a {
+  color: var(--ink-soft) !important;
+  font-weight: 500 !important;
+  &:hover { color: var(--accent) !important; }
+}
+
+@media all and #{$mobile} {
+  /* 모바일은 상단바 홈 아이콘이 그 역할을 하므로 워드마크는 숨긴다 */
+  .sidebar.left .page-title { display: none !important; }
+
+  /* 홈 아이콘 터치 영역·시인성 확보 */
+  .mobile-home-btn {
+    color: var(--ink) !important;
+    svg { stroke: currentColor !important; }
+    &:active { opacity: 0.55; }
+  }
+}
