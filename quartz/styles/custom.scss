@@ -1738,13 +1738,21 @@ article {
 }
 
 
-/* --- 8-23. Earnings 노트 상단 날짜 중복 제거 -----------------------------------
-   Earnings 노트는 본문 첫 줄에 "2026년 8월 28일" 을 갖고 있는데,
-   제목 아래에 이미 프론트매터 date 가 렌더링되므로 같은 날짜가 두 번 나온다.
-   본문 파일은 건드리지 않고 화면에서만 숨긴다.
-   (Earnings 8개 전부 H1 다음 줄이 날짜인 것을 확인함. 트랜스크립트는 H1 이 없어 영향 없음) */
+/* --- 8-23. 본문 부제(: Subtitle) 스타일 및 중복 날짜 숨김 -------------------------
+   H1 다음 줄의 부제(: 한글 부제)는 은은한 회색 서브타이틀로 단정하게 노출하고,
+   그 아래 중복으로 나오는 날짜(2026-09-03 등)를 화면에서 숨긴다. */
 article > .markdown-rendered > h1:first-child + p,
 article .markdown-preview-view > h1:first-child + p {
+  display: block !important;
+  font-size: 1.02rem !important;
+  color: var(--gray) !important;
+  margin-top: -0.4rem !important;
+  margin-bottom: 1.2rem !important;
+  line-height: 1.5 !important;
+}
+
+article > .markdown-rendered > h1:first-child + p + p,
+article .markdown-preview-view > h1:first-child + p + p {
   display: none !important;
 }
 
