@@ -11,7 +11,7 @@ tags:
 ---
 
 # NVIDIA Corporation (NVDA) Q1 FY27 Earnings Update & Q2 FY27 Setup
-> 엔비디아 FY27-Q1 실적 분석 및 핵심 지표 리뷰
+: 엔비디아 FY27-Q1 실적 분석 및 핵심 지표 리뷰
 
 2026년 8월 26일
 

@@ -11,7 +11,7 @@ tags:
 ---
 
 # IREN (IREN) Q4 FY26 Earnings Update
-> 아이렌 FY26-Q4 실적 분석 및 핵심 지표 리뷰
+: 아이렌 FY26-Q4 실적 분석 및 핵심 지표 리뷰
 
 2026년 8월 28일
 

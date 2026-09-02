@@ -11,7 +11,7 @@ tags:
 ---
 
 # Broadcom Inc. (AVGO) Q3 FY26 Earnings Update
-> 브로드컴 FY26-Q3 실적 분석 및 핵심 지표 리뷰
+: 브로드컴 FY26-Q3 실적 분석 및 핵심 지표 리뷰
 
 2026-09-03
 

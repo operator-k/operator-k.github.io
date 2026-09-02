@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-> 델 테크놀로지스 The Six Five Summit: AI Unleashed 2026 전문 번역
+: 델 테크놀로지스 The Six Five Summit: AI Unleashed 2026 전문 번역
 
 ▌ 세션 오프닝 및 인프라 패널: 맷 머피 (Matt Murphy - Marvell CEO) & 알리스터 (Alistair)
 

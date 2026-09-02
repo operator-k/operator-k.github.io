@@ -10,7 +10,7 @@ tags:
   - event/summit
 ---
 
-> 코히런트 The Six Five Summit: AI Unleashed 2026 전문 번역
+: 코히런트 The Six Five Summit: AI Unleashed 2026 전문 번역
 
 ▌ 개회사 및 소개
 

@@ -10,7 +10,7 @@ tags:
   - event/keynote
 ---
 
-> 엔비디아 SIGGRAPH 2026 Keynote 전문 번역
+: 엔비디아 SIGGRAPH 2026 Keynote 전문 번역
 
 ▌ 환영사: 크리스 레드먼 (Chris Redmann - SIGGRAPH 2026 컨퍼런스 의장, Apple)
 

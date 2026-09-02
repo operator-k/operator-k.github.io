@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-> 엔비디아 BofA Global Technology Conference 2026 전문 번역
+: 엔비디아 BofA Global Technology Conference 2026 전문 번역
 
 ▌ 개회 및 GTC 타이베이 주요 발표 하이라이트
 

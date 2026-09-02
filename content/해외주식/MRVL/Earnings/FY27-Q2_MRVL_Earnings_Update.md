@@ -11,7 +11,7 @@ tags:
 ---
 
 # Marvell Technology, Inc. (MRVL) Q2 FY27 Earnings Update
-> 마벨 테크놀로지 FY27-Q2 실적 분석 및 핵심 지표 리뷰
+: 마벨 테크놀로지 FY27-Q2 실적 분석 및 핵심 지표 리뷰
 
 2026년 8월 28일
 

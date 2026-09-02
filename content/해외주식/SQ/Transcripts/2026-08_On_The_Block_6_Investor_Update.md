@@ -10,7 +10,7 @@ tags:
   - event/investor-update
 ---
 
-> 블록 On The Block No.6 Investor Update 전문 번역
+: 블록 On The Block No.6 Investor Update 전문 번역
 
 ▌ 개회사 및 소개
 

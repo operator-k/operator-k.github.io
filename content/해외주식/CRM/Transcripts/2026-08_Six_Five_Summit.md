@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-> 세일즈포스 The Six Five Summit: AI Unleashed 2026 전문 번역
+: 세일즈포스 The Six Five Summit: AI Unleashed 2026 전문 번역
 
 ▌ 개회사 및 서두
 

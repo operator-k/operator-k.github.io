@@ -11,7 +11,7 @@ tags:
 ---
 
 # Nextpower Inc. (NXT) Q1 FY27 Earnings Update
-> 넥스트파워 FY27-Q1 실적 분석 및 핵심 지표 리뷰
+: 넥스트파워 FY27-Q1 실적 분석 및 핵심 지표 리뷰
 
 2026년 8월 26일
 
