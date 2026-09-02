@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-: 세일즈포스 Deutsche Bank 2026 Technology Conference 전문 번역
+세일즈포스 Deutsche Bank 2026 Technology Conference 전문 번역
 
 ▌ 대담 및 질의응답 세션 (Fireside Chat)
 

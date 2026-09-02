@@ -10,7 +10,7 @@ tags:
   - event/investor-day
 ---
 
-: 샌디스크 Investor Day 2026 전문 번역
+샌디스크 Investor Day 2026 전문 번역
 
 ▌ 개회사 및 면책 공시 (Opening & Safe Harbor)
 

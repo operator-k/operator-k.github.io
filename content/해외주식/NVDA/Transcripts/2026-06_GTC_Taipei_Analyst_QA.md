@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-: 엔비디아 GTC Taipei Financial Analyst Q&A 2026 전문 번역
+엔비디아 GTC Taipei Financial Analyst Q&A 2026 전문 번역
 
 ▌ 개회사 및 주주 환원 정책 발표: 젠슨 황 (Jensen Huang - NVIDIA 창립자 겸 CEO)
 

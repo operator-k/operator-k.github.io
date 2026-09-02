@@ -10,7 +10,7 @@ tags:
   - event/conference
 ---
 
-: 루멘텀 Deutsche Bank 2026 Technology Conference 전문 번역
+루멘텀 Deutsche Bank 2026 Technology Conference 전문 번역
 
 ▌ 개회사 및 소개
 
