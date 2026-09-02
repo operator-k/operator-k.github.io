@@ -10,6 +10,8 @@ tags:
   - event/summit
 ---
 
+> 코히런트 The Six Five Summit: AI Unleashed 2026 전문 번역
+
 ▌ 개회사 및 소개
 
 맷 킴볼(Matt Kimball - 식스 파이브 애널리스트): 저희와 함께 자리해 주신 분은 코히런트(Coherent)의 최고마케팅책임자(CMO)이신 산자이 파르타사라티 님입니다. 산자이, 이번 식스 파이브 서밋(Six Five Summit)에 참석해 주셔서 감사합니다. 매우 흥미진진한 대화가 될 것 같습니다.

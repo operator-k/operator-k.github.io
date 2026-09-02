@@ -11,6 +11,8 @@ tags:
 ---
 
 # Dell Technologies (DELL) Q2 FY27 Earnings Update
+> 델 테크놀로지스 FY27-Q2 실적 분석 및 핵심 지표 리뷰
+
 2026-09-02
 
 ### Executive Snapshot

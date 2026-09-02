@@ -10,6 +10,8 @@ tags:
   - event/conference
 ---
 
+> 델 테크놀로지스 The Six Five Summit: AI Unleashed 2026 전문 번역
+
 ▌ 세션 오프닝 및 인프라 패널: 맷 머피 (Matt Murphy - Marvell CEO) & 알리스터 (Alistair)
 
 모더레이터(Moderator - Dave): 방금 전 세션은 스노우플레이크(Snowflake)의 스리다르 라마스워미(Sridhar Ramaswamy) CEO와 함께 엔터프라이즈 AI의 변곡점과 데이터가 왜 경제적 해자인지에 대해 다루었습니다. 이제 우리는 AI 인프라 영역으로 넘어갑니다. 델 테크놀로지스(Dell Technologies)는 에이전틱 AI(Agentic AI)가 더 이상 단순한 인프라 스토리가 아니라, 운영 계층(Operating Layer)의 스토리라는 점을 역설하고 있습니다. 이를 실제 프로덕션 환경에서 작동시키기 위해 하부 구조에서 무엇이 충족되어야 하는지를 이번 트랙에서 낱낱이 파헤쳐 보겠습니다. 맷, 에이전틱 AI가 단순 데모를 넘어 실제 프로덕션으로 전환되기 위해 인프라 관련 논의는 구체적으로 어디로 전환되어야 합니까?

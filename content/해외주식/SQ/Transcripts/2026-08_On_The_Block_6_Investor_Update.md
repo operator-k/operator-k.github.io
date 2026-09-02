@@ -10,6 +10,8 @@ tags:
   - event/investor-update
 ---
 
+> 블록 On The Block No.6 Investor Update 전문 번역
+
 ▌ 개회사 및 소개
 
 맷 로스(Matt Ross - 블록 IR 총괄): 좋습니다. 여러분, 안녕하십니까. 블록의 CFO이자 COO, 파운데이셔널 리드이신 암리타 님과 함께하는 온 더 블록(On The Block) 6회 라이브 방송을 시작하겠습니다. 암리타 님을 모시게 되어 대단히 기쁩니다. 참석해 주셔서 감사합니다.
