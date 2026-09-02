@@ -22,7 +22,7 @@ tags:
 
 ## ▌ 01. Executive Summary
 
-- [실적 더블 비트]: Q1 FY27 매출 935.2M USD(YoY +8.2%, QoQ +6.2%), Adj. EPS 1.20 USD(YoY +3.4%) 기록하며 블룸버그 컨센서스(매출 932.1M USD, EPS 1.04 USD) 각각 +0.3%, +15.4% 상회.
+- [실적 더블 비트]: Q1 FY27 매출 935.2M USD(YoY +8.2%, QoQ +6.2%), Adj. EPS 1.20 USD(YoY +3.4%) 기록하며 시장 컨센서스(매출 932.1M USD, EPS 1.04 USD) 각각 +0.3%, +15.4% 상회.
 - [핵심 사업부 고성장]: 글로벌 트래커 시장점유율 1위(글로벌 30%, 미국 55%) 지배력 유지 속 eBOS 연간 매출 100M USD 초과 트랙 안착 및 PowerMerge 누적 수주 850 MW 돌파.
 - [수익성 체질 개선]: IRA 45X 제조 세액공제 순수혜(99M USD) 및 운영 레버리지 효과로 Adj. GPM 36.6%(YoY +3.6%p), Adj. EBITDA 232.6M USD(마진 24.9%) 달성.
 - [가이던스 대폭 상향]: 연간 수주잔고 55억 달러(BESS 제외) 돌파 및 Prevalon 수주 300M USD 추가에 힘입어 FY27 매출 가이던스 하단을 4.1B~4.4B USD, Adj. EBITDA를 870M~930M USD로 상향 조정.
