@@ -11,6 +11,8 @@ tags:
 ---
 
 # Affirm Holdings, Inc. (AFRM) Q4 FY26 Earnings Update
+어펌 홀딩스 FY26-Q4 실적 분석 및 핵심 지표 리뷰
+
 2026년 9월 3일
 
 ### Executive Snapshot

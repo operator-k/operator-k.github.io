@@ -11,6 +11,8 @@ tags:
 ---
 
 # Ciena Corporation (CIEN) Q3 FY26 Earnings Update
+시에나 FY26-Q3 실적 분석 및 핵심 지표 리뷰
+
 2026년 9월 4일
 
 ### Executive Snapshot
