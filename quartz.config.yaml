@@ -13,6 +13,8 @@ configuration:
     - private
     - templates
     - .obsidian
+    - "**/Transcripts/**"
+    - "**/Transcripts"
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
