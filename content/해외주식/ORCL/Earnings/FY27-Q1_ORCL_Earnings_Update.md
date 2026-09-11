@@ -1,5 +1,6 @@
 ---
 title: ORCL Q1 FY27 Earnings Update
+description: "매출 19.35B USD(+29.6% YoY) 및 Non-GAAP EPS 1.92 USD(+30.0%) 더블 비트 달성. OCI 인프라 매출 +121% 폭증 및 FY27 연간 가이던스 상향."
 date: 2026-09-11
 ticker: ORCL
 company: Oracle Corporation
