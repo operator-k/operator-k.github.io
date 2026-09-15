@@ -1,5 +1,5 @@
 ---
-title: XPeng Inc. (XPEV) Q2 FY26 Earnings Update
+title: XPEV Q2 FY26 Earnings Update
 date: 2026-09-15
 modified: 2026-09-15
 earnings_date: 2026-08-24
@@ -14,7 +14,7 @@ tags:
 ---
 
 # XPeng Inc. (XPEV) Q2 FY26 Earnings Update
-샤오펑 2Q26 실적 분석 및 핵심 지표 리뷰
+샤오펑 FY26-Q2 실적 분석 및 핵심 지표 리뷰
 
 2026년 9월 15일
 
