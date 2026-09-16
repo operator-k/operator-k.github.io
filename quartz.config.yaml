@@ -15,6 +15,9 @@ configuration:
     - .obsidian
     - "**/Transcripts/**"
     - "**/Transcripts"
+    - "**/Slides/**"
+    - "**/Slides"
+    - "**/*.pdf"
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
