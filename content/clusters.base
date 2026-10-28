@@ -1,0 +1,77 @@
+filters:
+  and:
+    - file.ext == "md"
+    - '!(file.path.contains("/Transcripts/"))'
+    - '!(file.path.contains("/Sources/"))'
+properties:
+  note.cluster:
+    displayName: "클러스터 (Cluster)"
+  note.ticker:
+    displayName: "티커"
+  note.company:
+    displayName: "기업명"
+  note.date:
+    displayName: "기준일"
+  note.target_price:
+    displayName: "목표주가"
+  note.anchor_price:
+    displayName: "기준주가"
+  note.description:
+    displayName: "핵심 요약"
+views:
+  - type: table
+    name: "1. 최종 리포트 (Full Reports)"
+    filters:
+      and:
+        - 'file.name.endsWith("_Report.md")'
+    groupBy:
+      property: note.cluster
+      direction: ASC
+    order:
+      - file.name
+      - note.ticker
+      - note.company
+      - note.date
+      - note.description
+  - type: table
+    name: "2. 핵심 투자포인트 (Thesis)"
+    filters:
+      and:
+        - 'file.name.endsWith("_Thesis.md")'
+    groupBy:
+      property: note.cluster
+      direction: ASC
+    order:
+      - file.name
+      - note.ticker
+      - note.anchor_price
+      - note.target_price
+      - note.date
+      - note.thesis
+  - type: table
+    name: "3. 분기 실적 리뷰 (Earnings)"
+    filters:
+      or:
+        - 'file.name.endsWith("_Earnings.md")'
+        - 'file.name.contains("_Earnings_Update")'
+    groupBy:
+      property: note.cluster
+      direction: ASC
+    order:
+      - file.name
+      - note.ticker
+      - note.date
+      - note.description
+  - type: table
+    name: "4. 클러스터별 전체 문서"
+    filters:
+      and:
+        - 'note.cluster != null'
+    groupBy:
+      property: note.cluster
+      direction: ASC
+    order:
+      - file.name
+      - note.ticker
+      - note.date
+      - note.description
