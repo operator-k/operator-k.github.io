@@ -263,7 +263,6 @@ plugins:
     options:
       includeAll: false
       includedProperties:
-        - cluster
         - ticker
         - company
         - event

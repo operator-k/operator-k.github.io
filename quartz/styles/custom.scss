@@ -705,11 +705,11 @@ a:hover, a.internal:hover { color: #000 !important; }
 :root[saved-theme="dark"] a:hover { color: #fff !important; }
 
 
-/* --- 8-2. 글줄 길이 및 데스크톱 본문 폭 최적화 ------------------------------
-   리서치 리포트(7컬럼 손익표, 밸류에이션 매트릭스, 와이드 차트) 가독성을 위해
-   데스크톱 본문 폭을 56rem(약 896px)으로 확장하고, 모바일(<=800px)은 기존 100% 유지. */
+/* --- 8-2. 글줄 길이 제한 ----------------------------------------------------
+   한 줄에 한글 60자 이상 들어가면 줄바꿈 지점을 눈으로 다시 찾아야 한다.
+   44rem ≈ 한글 42자 내외. */
 article {
-  max-width: 56rem !important;
+  max-width: 44rem !important;
   font-size: 1.02rem !important;
   line-height: 1.9 !important;
   color: var(--ink) !important;
@@ -724,25 +724,6 @@ article {
 
   li { margin-bottom: 0.7rem !important; }
   ul, ol { margin: 0 0 1.35rem !important; padding-left: 1.15rem !important; }
-}
-
-@media all and #{$desktop} {
-  .page {
-    max-width: 1740px !important;
-  }
-  .page > #quartz-body {
-    .page-header,
-    .center > article,
-    .center > .recent-notes,
-    .center > .page-listing,
-    .page-footer,
-    footer {
-      width: 100% !important;
-      max-width: 56rem !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-  }
 }
 
 
@@ -1568,13 +1549,13 @@ article .markdown-preview-view > *:first-child {
   white-space: nowrap !important;
 }
 
-/* 데스크톱 본문 폭이 56rem으로 넓어졌으므로 표도 본문 폭(56rem)에 깔끔히 맞춘다 */
+/* 데스크톱에서는 표만 본문 글줄 폭 밖으로 넓혀 스크롤 자체를 줄인다 */
 @media all and #{$desktop} {
   article > .table-scroll {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    width: calc(100% + 7rem);
+    max-width: calc(100% + 7rem);
+    margin-left: -3.5rem;
+    margin-right: -3.5rem;
   }
 }
 
