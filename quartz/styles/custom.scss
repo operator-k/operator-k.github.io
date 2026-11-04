@@ -1559,9 +1559,23 @@ article .markdown-preview-view > *:first-child {
   }
 }
 
+/* 모바일: 한 화면에 열을 더 담는다 (2026-11-04)
+   본문 line-height 1.9 를 상속해 행이 34px 로 늘어지던 것을 줄이고,
+   긴 지표명(예: 희석주식수 (가중평균, M주))은 첫 열에서 줄바꿈해 숫자 열 자리를 확보한다.
+   시계열 표의 최신 열부터 보여주는 건 Head.tsx 의 wrapTables 가 처리한다. */
 @media all and #{$mobile} {
-  .table-scroll > table { font-size: 0.84rem !important; }
-  .table-scroll th, .table-scroll td { padding: 0.45rem 0.55rem !important; }
+  .table-scroll { margin: 1.1rem 0; }
+  .table-scroll > table { font-size: 0.74rem !important; line-height: 1.35 !important; }
+  // base.scss 가 th/td 에 line-height 1.6rem 을 직접 걸어서 table 에 준 값은 무시된다. 셀에 직접 건다.
+  .table-scroll th, .table-scroll td { padding: 0.32rem 0.45rem !important; line-height: 1.35 !important; }
+  .table-scroll th { font-size: 0.7rem !important; }
+  .table-scroll th:first-child,
+  .table-scroll td:first-child {
+    white-space: normal !important;
+    word-break: keep-all !important;
+    min-width: 5.5rem !important;
+    max-width: 7.5rem !important;
+  }
 }
 
 /* --- 8-21. 우측 '문서 정보' 패널 -----------------------------------------------
