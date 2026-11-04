@@ -165,23 +165,16 @@ export default (() => {
                         // 템플릿 문자열 안이라 역슬래시(\d 등)를 쓰면 빌드 때 사라진다. 문자 클래스만 쓴다.
                         if (/^(FY ?[0-9]{2,4}|[1-4]Q ?[0-9]{2}|[0-9]{4}[AE]?)$/.test(ths[j].textContent.trim())) periods++;
                       }
-                      if (periods >= 3) w.setAttribute("data-scroll-end", "1");
-                    }
-                  }
-                  // DOMContentLoaded 시점엔 CSS·폰트가 덜 적용돼 scrollWidth 가 작으므로
-                  // 레이아웃이 잡힌 뒤(다음 프레임, load)에 오른쪽 끝으로 보낸다.
-                  function scrollEnd() {
-                    var ws = document.querySelectorAll('.table-scroll[data-scroll-end="1"]');
-                    for (var k = 0; k < ws.length; k++) {
-                      if (ws[k].getAttribute("data-scrolled") === "1") continue;
-                      if (ws[k].scrollWidth > ws[k].clientWidth) {
-                        ws[k].scrollLeft = ws[k].scrollWidth;
-                        ws[k].setAttribute("data-scrolled", "1");
+                      // 모바일 PDF(sync_pdf.py fin-8col)와 같은 방식: 스크롤 없이 전 열을 폭에 맞춘다.
+                      // 헤더 FY2026E → FY26E 로 줄여 열 폭을 확보한다.
+                      if (periods >= 3) {
+                        t.classList.add("fin-fit");
+                        for (var m = 0; m < ths.length; m++) {
+                          ths[m].textContent = ths[m].textContent.trim().replace(/^FY ?20([0-9]{2})/, "FY$1");
+                        }
                       }
                     }
                   }
-                  requestAnimationFrame(function () { requestAnimationFrame(scrollEnd); });
-                  window.addEventListener("load", scrollEnd, { once: true });
                 }
 
                 if (document.readyState === "loading") {
