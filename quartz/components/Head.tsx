@@ -165,24 +165,46 @@ export default (() => {
                         // 템플릿 문자열 안이라 역슬래시(\d 등)를 쓰면 빌드 때 사라진다. 문자 클래스만 쓴다.
                         if (/^(FY ?[0-9]{2,4}|[1-4]Q ?[0-9]{2}|[0-9]{4}[AE]?)$/.test(ths[j].textContent.trim())) periods++;
                       }
-                      // 모바일 PDF(sync_pdf.py fin-8col)와 같은 방식: 스크롤 없이 전 열을 폭에 맞춘다.
-                      // 헤더 FY2026E → FY26E 로 줄여 열 폭을 확보한다.
+                      // 2026-11-05: fin-fit(전열 fit) 폐기. 10px 글씨 강요가 스크롤보다 가독성이 나빴다.
+                      // 스크롤+첫열고정을 유지하고, 최신 열이 보이도록 오른쪽 끝에서 시작한다.
                       if (periods >= 3) {
-                        t.classList.add("fin-fit");
-                        for (var m = 0; m < ths.length; m++) {
-                          ths[m].textContent = ths[m].textContent.trim().replace(/^FY ?20([0-9]{2})/, "FY$1");
-                        }
+                        requestAnimationFrame(function () {
+                          w.scrollLeft = w.scrollWidth;
+                        });
                       }
                     }
                   }
                 }
 
+                // 본문 인라인 차트(SVG)를 스크롤 래퍼로 감싼다.
+                // 차트는 viewBox 680px 로 그려지는데 모바일에서 폭 100% 로 축소되면
+                // 11px 라벨이 6px 수준이 된다. 래퍼 안에서 최소 폭을 보장해 글씨를 살린다.
+                // 콜아웃 아이콘 등 작은 SVG 는 viewBox 폭으로 걸러낸다.
+                function wrapCharts() {
+                  var svgs = document.querySelectorAll("article svg");
+                  for (var i = 0; i < svgs.length; i++) {
+                    var s = svgs[i];
+                    var p = s.parentElement;
+                    if (p && p.classList.contains("chart-scroll")) continue;
+                    if (s.closest(".callout")) continue;
+                    var vb = s.viewBox;
+                    if (!vb || !vb.baseVal || vb.baseVal.width < 400) continue;
+                    var w = document.createElement("div");
+                    w.className = "chart-scroll";
+                    s.parentNode.insertBefore(w, s);
+                    w.appendChild(s);
+                  }
+                }
+
                 if (document.readyState === "loading") {
                   document.addEventListener("DOMContentLoaded", wrapTables);
+                  document.addEventListener("DOMContentLoaded", wrapCharts);
                 } else {
                   wrapTables();
+                  wrapCharts();
                 }
                 document.addEventListener("nav", wrapTables);
+                document.addEventListener("nav", wrapCharts);
 
                 document.addEventListener("keydown", function (e) {
                   if (e.key !== "Escape") return;

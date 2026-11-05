@@ -1559,44 +1559,18 @@ article .markdown-preview-view > *:first-child {
   }
 }
 
-/* 모바일: 가로 스크롤 대신 화면 폭에 맞춘다 (2026-11-04, 모바일 PDF 방식 차용)
-   - 시계열 손익표(.fin-fit, Head.tsx 가 헤더에 기간 3개 이상이면 붙임):
-     table-layout fixed 로 전 열을 폭 안에 넣는다. 첫 열 24%, 나머지 균등.
-   - 그 외 표(기준일 요약·비교표 등): 칸 안에서 줄바꿈해 폭에 맞춘다.
-     숫자처럼 끊을 곳이 없어 넘치면 기존 스크롤 래퍼가 받는다. */
+/* 모바일: 가로 스크롤 + 첫 열 고정으로 통일 (2026-11-05, fin-fit 폐기)
+   11-04 시도한 전열 fit(table-layout fixed, 0.66rem)은 글씨가 10px 로 쪼그라들어
+   스크롤보다 가독성이 나빴다. 잘린 열 자체가 스크롤 affordance 이므로
+   기본 스크롤 동작으로 되돌리고, 모바일에서는 글씨·여백만 살짝 줄인다. */
 @media all and #{$mobile} {
   .table-scroll { margin: 1.1rem 0; }
   .table-scroll > table {
-    width: 100% !important;
-    min-width: 0 !important;
-    font-size: 0.74rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.8rem !important;
   }
-  .table-scroll > table:not(.fin-fit) th,
-  .table-scroll > table:not(.fin-fit) td {
-    white-space: normal !important;
-    word-break: keep-all !important;
-  }
-  .table-scroll > table.fin-fit { table-layout: fixed !important; font-size: 0.66rem !important; }
-  .table-scroll > table.fin-fit th,
-  .table-scroll > table.fin-fit td {
-    padding: 0.32rem 0.1rem !important;
-    letter-spacing: -0.02em;
-    overflow: hidden;
-  }
-  .table-scroll > table.fin-fit th { font-size: 0.62rem !important; }
-  .table-scroll > table.fin-fit th:first-child,
-  .table-scroll > table.fin-fit td:first-child {
-    width: 24% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    padding-left: 0.2rem !important;
-  }
-  .table-scroll > table.fin-fit th:last-child,
-  .table-scroll > table.fin-fit td:last-child { padding-right: 0.2rem !important; }
   // base.scss 가 th/td 에 line-height 1.6rem 을 직접 걸어서 table 에 준 값은 무시된다. 셀에 직접 건다.
-  .table-scroll th, .table-scroll td { padding: 0.32rem 0.45rem !important; line-height: 1.35 !important; }
-  .table-scroll th { font-size: 0.7rem !important; }
+  .table-scroll th, .table-scroll td { padding: 0.4rem 0.5rem !important; line-height: 1.4 !important; }
+  .table-scroll th { font-size: 0.74rem !important; }
   .table-scroll th:first-child,
   .table-scroll td:first-child {
     white-space: normal !important;
@@ -1802,7 +1776,8 @@ article .markdown-preview-view > h1:first-child + p + p {
 @media all and #{$mobile} {
   article {
     h2 { margin: 2.3rem 0 0.65rem !important; }
-    h3 { margin: 1.6rem 0 0.45rem !important; }
+    // 어닝 노트 h3 는 40~60자 논지형 제목이라 1.12rem 에선 4~5줄로 감긴다. 한 단계만 낮춘다.
+    h3 { margin: 1.6rem 0 0.45rem !important; font-size: 1rem !important; line-height: 1.55 !important; }
     p  { margin-bottom: 1.05rem !important; }
     li { margin-bottom: 0.35rem !important; line-height: 1.75 !important; }
   }
@@ -2052,5 +2027,27 @@ ul.section-ul li.section-li:hover a.internal,
     color: var(--ink) !important;
     svg { stroke: currentColor !important; }
     &:active { opacity: 0.55; }
+  }
+}
+
+
+/* --- 8-30. 본문 차트(SVG) 모바일 스크롤 래퍼 (2026-11-05) ----------------------
+   인라인 SVG 차트는 viewBox 680px 로 그려지는데 모바일에서 폭 100% 로 축소되면
+   11px 라벨이 6px 수준이 된다. 표와 같은 패턴으로 스크롤 래퍼를 두고
+   (Head.tsx wrapCharts 가 런타임에 삽입) 모바일에서 600px 폭을 보장한다.
+   → 라벨 약 10px 유지, 한 번의 swipe 로 전체 확인. */
+.chart-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+@media all and #{$mobile} {
+  .chart-scroll > svg {
+    width: 600px !important;
+    max-width: none !important;
+    height: auto !important;
   }
 }
