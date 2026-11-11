@@ -538,7 +538,7 @@ export default (() => {
                     for (var ri = 0; ri < rows.length; ri++) {
                       var tr = rows[ri];
                       var rowText = tr.textContent || "";
-                      if (rowText.indexOf("목표 (Base)") !== -1 || rowText.indexOf("목표주가 합계") !== -1 || rowText.indexOf("연결 합계") !== -1 || rowText.indexOf("전사 매출액 합계") !== -1) {
+                      if (rowText.indexOf("목표 (Base)") !== -1 || rowText.indexOf("기준 (Base)") !== -1 || rowText.indexOf("목표주가 합계") !== -1 || rowText.indexOf("적정가치 합계") !== -1 || rowText.indexOf("합계 (기준 적정가치") !== -1 || rowText.indexOf("연결 합계") !== -1 || rowText.indexOf("전사 매출액 합계") !== -1) {
                         tr.classList.add("emph-row");
                       }
                       var cells = tr.querySelectorAll("td");
