@@ -2732,6 +2732,17 @@ html[saved-theme="dark"] button.darkmode,
   background-color: var(--ink-soft) !important;
 }
 
+/* 개별 리서치·어닝 문서 최하단 아카이빙 디스클레이머 각주 */
+article .research-disclaimer {
+  margin-top: 2.75rem !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--n-border) !important;
+  font-size: 12.5px !important;
+  line-height: 1.62 !important;
+  color: var(--ink-faint) !important;
+  word-break: keep-all !important;
+}
+
 /* 표 하단 기준 각주 & 차트 캡션 */
 article p.caption-note {
   font-size: 13px !important;

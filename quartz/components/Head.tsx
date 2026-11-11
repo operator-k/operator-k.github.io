@@ -377,7 +377,7 @@ export default (() => {
                       var colRating = findCol(["투자의견"]);
                       var colPrice = findCol(["현재가", "현재주가"]);
                       var colTarget = findCol(["목표주가", "적정가치", "적정주가"]);
-                      var colUpside = findCol(["상승여력"]);
+                      var colUpside = findCol(["상승여력", "괴리율"]);
                       var colMcap = findCol(["시가총액"]);
                       var colMom = findCol(["핵심 모멘텀", "주요 일정"]);
                       if (colPrice && colTarget) {
@@ -386,10 +386,6 @@ export default (() => {
                         for (var k = 0; k < ths.length && k < tds.length; k++) {
                           map[hTexts[k]] = tds[k].textContent.trim();
                         }
-                        var rating = colRating ? (map[colRating] || "") : "";
-                        var pillCls = "n-pill";
-                        if (rating.toUpperCase().indexOf("BUY") !== -1) pillCls += " buy";
-                        else if (rating.toUpperCase().indexOf("SELL") !== -1) pillCls += " sell";
 
                         // 밸류에이션 배수 컬럼들 수집 (FY27E P/E, 선행 EV/Sales 등)
                         var multParts = [];
@@ -409,9 +405,8 @@ export default (() => {
                         propsDiv.className = "n-props";
                         var rowsHtml = "";
                         var upsideVal = colUpside ? (map[colUpside] || "") : "";
-                        var ratingHtml = rating ? ('<span class="' + pillCls + '">' + rating + "</span>") : (upsideVal.indexOf("+") === 0 ? '<span class="n-pill buy">' + upsideVal + "</span>" : "");
-                        var upsideSuffix = (rating && upsideVal) ? (" · 상승여력 " + upsideVal) : (!rating && upsideVal && upsideVal.indexOf("+") !== 0 ? (" · 상승여력 " + upsideVal) : "");
-                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">' + (rating ? "투자의견 · 목표가" : "적정가치 · 여력") + '</div><div class="n-prop-val">' + ratingHtml + "목표가 " + (map[colTarget] || "-") + upsideSuffix + "</div></div>";
+                        var upsideHtml = upsideVal ? (' · <span class="n-pill">' + upsideVal + "</span>") : "";
+                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">적정가치(Base)</div><div class="n-prop-val">' + (map[colTarget] || "-") + upsideHtml + "</div></div>";
                         rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">현재가 · 시가총액</div><div class="n-prop-val">' + (map[colPrice] || "-") + (colMcap && map[colMcap] ? " · " + map[colMcap] : "") + (multVal ? " · " + multVal : "") + "</div></div>";
                         if (dateStr || (colMom && map[colMom])) {
                           rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">작성일 · 일정</div><div class="n-prop-val">' + dateStr + (colMom && map[colMom] ? " (" + map[colMom] + ")" : "") + "</div></div>";
@@ -597,6 +592,16 @@ export default (() => {
                     });
                     btnWrap.appendChild(sBtn);
                     toolbar.appendChild(btnWrap);
+                  }
+
+                  // 7) 개별 리서치·어닝 문서 최하단 아카이빙 디스클레이머 자동 삽입 (인덱스·태그 목록 제외, 백슬래시 금지)
+                  var slugAttr = (document.body.getAttribute("data-slug") || "").toLowerCase();
+                  var isIdxSlug = slugAttr === "" || slugAttr === "index" || slugAttr.slice(-6) === "/index" || slugAttr.indexOf("tags/") === 0;
+                  if (!isIdxSlug && !article.querySelector(".research-disclaimer") && (article.textContent || "").trim().length > 120) {
+                    var disc = document.createElement("div");
+                    disc.className = "research-disclaimer";
+                    disc.textContent = "본 문서는 리서치 아카이빙 및 정보 공유 목적으로 작성되었으며, 특정 종목의 매수·매도 추천이나 투자 권유가 아닙니다. 기재된 추정치와 적정가치는 작성 시점의 가정을 바탕으로 한 참고 의견이며, 투자 판단과 책임은 투자자 본인에게 있습니다.";
+                    article.appendChild(disc);
                   }
                 }
 
