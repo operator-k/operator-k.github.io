@@ -2649,63 +2649,87 @@ article .notion-callout li:last-child {
   font-weight: 600 !important;
 }
 
-/* 2열 제품 실물·공식 영상 쇼케이스 표 (media-grid): sticky·최소폭 해제 + 16:9 균등 2열 배치 */
-.table-scroll:has(> table.media-grid) {
-  overflow-x: hidden !important;
+/* 2열 제품 실물·공식 영상 쇼케이스 그리드 (media-showcase-grid): 데스크탑 2열 · 모바일 1열 카드 스택 */
+article .media-showcase-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  width: 100% !important;
   margin: 1rem 0 1.25rem !important;
 }
 
-.table-scroll > table.media-grid {
-  width: 100% !important;
+article .media-showcase-grid[data-cols="1"] {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+article .media-showcase-grid .media-card {
+  border: 1px solid var(--n-border) !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  background-color: var(--n-bg) !important;
+  display: flex !important;
+  flex-direction: column !important;
   min-width: 0 !important;
-  table-layout: fixed !important;
 }
 
-.table-scroll > table.media-grid thead th,
-.table-scroll > table.media-grid thead th:first-child {
-  position: static !important;
-  box-shadow: none !important;
-  text-align: center !important;
-  white-space: normal !important;
+article .media-showcase-grid .media-card-title {
+  background-color: var(--n-gray-bg) !important;
+  color: var(--ink) !important;
   font-size: 13px !important;
-  padding: 6px 10px !important;
-}
-
-.table-scroll > table.media-grid tbody td,
-.table-scroll > table.media-grid tbody td:first-child {
-  position: static !important;
-  box-shadow: none !important;
-  width: 50% !important;
-  max-width: none !important;
-  white-space: normal !important;
-  padding: 8px !important;
-  vertical-align: middle !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  padding: 7px 12px !important;
   text-align: center !important;
+  border-bottom: 1px solid var(--n-border) !important;
+  word-break: keep-all !important;
 }
 
-.table-scroll > table.media-grid tbody td img,
-.table-scroll > table.media-grid tbody td iframe,
-.table-scroll > table.media-grid tbody td video {
+article .media-showcase-grid .media-card-body {
+  padding: 8px !important;
+  background-color: var(--n-bg) !important;
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+article .media-showcase-grid .media-card-body img,
+article .media-showcase-grid .media-card-body iframe,
+article .media-showcase-grid .media-card-body video {
   width: 100% !important;
   aspect-ratio: 16 / 9 !important;
   height: auto !important;
   object-fit: cover !important;
   display: block !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
   border: none !important;
   border-radius: 3px !important;
 }
 
 @media (max-width: 640px) {
-  .table-scroll > table.media-grid,
-  .table-scroll > table.media-grid thead,
-  .table-scroll > table.media-grid tbody,
-  .table-scroll > table.media-grid tr,
-  .table-scroll > table.media-grid th,
-  .table-scroll > table.media-grid td {
-    display: block !important;
-    width: 100% !important;
+  article .media-showcase-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
   }
+}
+
+/* 모바일 일반 데이터 표: 가로 스크롤 허용 + 설명 열 최소폭 확보 + 노란 달 아이콘 무채색 통일 */
+@media (max-width: 800px) {
+  .table-scroll > table {
+    width: max-content !important;
+    min-width: 100% !important;
+  }
+
+  .table-scroll tbody td.txt {
+    min-width: 165px !important;
+    max-width: 240px !important;
+  }
+}
+
+:root[saved-theme="dark"] button.darkmode,
+html[saved-theme="dark"] button.darkmode,
+[saved-theme="dark"] button.darkmode {
+  background-color: var(--ink-soft) !important;
 }
 
 /* 표 하단 기준 각주 & 차트 캡션 */

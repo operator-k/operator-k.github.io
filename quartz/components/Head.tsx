@@ -511,7 +511,31 @@ export default (() => {
                     var hasMedia = tbBody && tbBody.querySelector("td img, td iframe, td video") !== null;
                     var bodyPlain = tbBody ? (tbBody.textContent || "").trim() : "";
                     if (hasMedia && bodyPlain.length === 0) {
-                      tb.classList.add("media-grid");
+                      var mHeaders = tb.querySelectorAll("thead th");
+                      var mCells = tb.querySelectorAll("tbody tr:first-child td");
+                      var grid = document.createElement("div");
+                      grid.className = "media-showcase-grid";
+                      if (mCells.length === 1) grid.setAttribute("data-cols", "1");
+                      for (var mi2 = 0; mi2 < mCells.length; mi2++) {
+                        var card = document.createElement("div");
+                        card.className = "media-card";
+                        var capText = mHeaders[mi2] ? (mHeaders[mi2].textContent || "").trim() : "";
+                        if (capText) {
+                          var capEl = document.createElement("div");
+                          capEl.className = "media-card-title";
+                          capEl.textContent = capText;
+                          card.appendChild(capEl);
+                        }
+                        var bodyEl = document.createElement("div");
+                        bodyEl.className = "media-card-body";
+                        while (mCells[mi2].firstChild) {
+                          bodyEl.appendChild(mCells[mi2].firstChild);
+                        }
+                        card.appendChild(bodyEl);
+                        grid.appendChild(card);
+                      }
+                      var targetNode = (tb.parentElement && tb.parentElement.classList.contains("table-scroll")) ? tb.parentElement : tb;
+                      targetNode.parentNode.replaceChild(grid, targetNode);
                       continue;
                     }
                     var headThs = tb.querySelectorAll("thead th");
