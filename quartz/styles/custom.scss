@@ -2816,14 +2816,66 @@ button.share-link-btn {
 }
 
 @media all and #{$mobile} {
+  /* 모바일 Grid 'auto' 트랙이 내부 표 최소폭 때문에 100vw 밖으로 팽창해 우측 본문·이미지가 잘리는 버그 수정 */
+  html,
+  body,
+  #quartz-root.page,
+  #quartz-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  html:not([data-share="1"]) #quartz-body {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #quartz-body > .sidebar.left,
+  #quartz-body > .sidebar.right,
+  #quartz-body > .center,
+  #quartz-body > footer,
+  .center > .page-header,
+  .center > article,
+  article > .table-container,
+  article > .table-scroll,
+  article > .chart-scroll,
+  article figure.doc-fig {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Quartz 기본 .table-container 의 table margin(1rem)·padding(1.5rem) 제거 및 터치 가로 스크롤 보장 */
+  .table-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: visible !important;
+  }
+
+  .table-scroll {
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .table-scroll > table {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+  }
+
+  article img,
+  article figure.doc-fig img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
   .page-header h1, h1.article-title {
     font-size: 1.8rem !important;
   }
   article .n-prop-key {
     width: 98px !important;
-  }
-  .table-scroll > table {
-    font-size: 13px !important;
   }
 }
 

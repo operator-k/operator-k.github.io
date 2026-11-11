@@ -366,25 +366,40 @@ export default (() => {
                     if (ths.length >= 5 && trs.length === 1) {
                       var hTexts = [];
                       for (var hi = 0; hi < ths.length; hi++) hTexts.push(ths[hi].textContent.trim());
-                      if (hTexts[0] === "투자의견" && hTexts.indexOf("목표주가") !== -1) {
+                      var findCol = function (keys) {
+                        for (var ki = 0; ki < keys.length; ki++) {
+                          for (var hj = 0; hj < hTexts.length; hj++) {
+                            if (hTexts[hj].indexOf(keys[ki]) !== -1) return hTexts[hj];
+                          }
+                        }
+                        return "";
+                      };
+                      var colRating = findCol(["투자의견"]);
+                      var colPrice = findCol(["현재가", "현재주가"]);
+                      var colTarget = findCol(["목표주가", "적정가치", "적정주가"]);
+                      var colUpside = findCol(["상승여력"]);
+                      var colMcap = findCol(["시가총액"]);
+                      var colMom = findCol(["핵심 모멘텀", "주요 일정"]);
+                      if (colPrice && colTarget) {
                         var tds = trs[0].querySelectorAll("td");
                         var map = {};
                         for (var k = 0; k < ths.length && k < tds.length; k++) {
                           map[hTexts[k]] = tds[k].textContent.trim();
                         }
-                        var rating = map["투자의견"] || "";
+                        var rating = colRating ? (map[colRating] || "") : "";
                         var pillCls = "n-pill";
                         if (rating.toUpperCase().indexOf("BUY") !== -1) pillCls += " buy";
                         else if (rating.toUpperCase().indexOf("SELL") !== -1) pillCls += " sell";
 
-                        // 밸류에이션 배수 컬럼명 탐색 (6번째 열 등)
-                        var multVal = "";
+                        // 밸류에이션 배수 컬럼들 수집 (FY27E P/E, 선행 EV/Sales 등)
+                        var multParts = [];
                         for (var mi = 0; mi < hTexts.length; mi++) {
-                          if (hTexts[mi] !== "투자의견" && hTexts[mi] !== "현재가" && hTexts[mi] !== "목표주가" && hTexts[mi] !== "상승여력" && hTexts[mi] !== "시가총액" && hTexts[mi] !== "핵심 모멘텀") {
-                            multVal = map[hTexts[mi]] || "";
-                            break;
+                          var hk = hTexts[mi];
+                          if (hk !== colRating && hk !== colPrice && hk !== colTarget && hk !== colUpside && hk !== colMcap && hk !== colMom) {
+                            if (map[hk]) multParts.push(hk + " " + map[hk]);
                           }
                         }
+                        var multVal = multParts.join(" · ");
                         var metaDateEl = document.querySelector(".page-header .content-meta time, .content-meta time, .content-meta");
                         var dateStr = metaDateEl ? metaDateEl.textContent.trim() : "";
                         var descMeta = document.querySelector('meta[name="description"]');
@@ -393,17 +408,23 @@ export default (() => {
                         var propsDiv = document.createElement("div");
                         propsDiv.className = "n-props";
                         var rowsHtml = "";
-                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">투자의견 · 목표가</div><div class="n-prop-val"><span class="' + pillCls + '">' + rating + '</span>목표주가 ' + (map["목표주가"] || "-") + (map["상승여력"] ? " · 상승여력 " + map["상승여력"] : "") + "</div></div>";
-                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">현재가 · 시가총액</div><div class="n-prop-val">' + (map["현재가"] || "-") + (map["시가총액"] ? " · " + map["시가총액"] : "") + (multVal ? " · " + multVal : "") + "</div></div>";
-                        if (dateStr || map["핵심 모멘텀"]) {
-                          rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">작성일 · 일정</div><div class="n-prop-val">' + dateStr + (map["핵심 모멘텀"] ? " (" + map["핵심 모멘텀"] + ")" : "") + "</div></div>";
+                        var upsideVal = colUpside ? (map[colUpside] || "") : "";
+                        var ratingHtml = rating ? ('<span class="' + pillCls + '">' + rating + "</span>") : (upsideVal.indexOf("+") === 0 ? '<span class="n-pill buy">' + upsideVal + "</span>" : "");
+                        var upsideSuffix = (rating && upsideVal) ? (" · 상승여력 " + upsideVal) : (!rating && upsideVal && upsideVal.indexOf("+") !== 0 ? (" · 상승여력 " + upsideVal) : "");
+                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">' + (rating ? "투자의견 · 목표가" : "적정가치 · 여력") + '</div><div class="n-prop-val">' + ratingHtml + "목표가 " + (map[colTarget] || "-") + upsideSuffix + "</div></div>";
+                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">현재가 · 시가총액</div><div class="n-prop-val">' + (map[colPrice] || "-") + (colMcap && map[colMcap] ? " · " + map[colMcap] : "") + (multVal ? " · " + multVal : "") + "</div></div>";
+                        if (dateStr || (colMom && map[colMom])) {
+                          rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">작성일 · 일정</div><div class="n-prop-val">' + dateStr + (colMom && map[colMom] ? " (" + map[colMom] + ")" : "") + "</div></div>";
                         }
                         if (descStr) {
                           rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">핵심 요약</div><div class="n-prop-val">' + descStr + "</div></div>";
                         }
                         propsDiv.innerHTML = rowsHtml;
 
-                        var targetWrap = firstTable.parentElement && firstTable.parentElement.classList.contains("table-scroll") ? firstTable.parentElement : firstTable;
+                        var targetWrap = firstTable.parentElement && (firstTable.parentElement.classList.contains("table-scroll") || firstTable.parentElement.classList.contains("table-container")) ? firstTable.parentElement : firstTable;
+                        if (targetWrap.parentElement && targetWrap.parentElement.classList.contains("table-container")) {
+                          targetWrap = targetWrap.parentElement;
+                        }
                         targetWrap.parentNode.insertBefore(propsDiv, targetWrap);
                         targetWrap.remove();
                         document.body.classList.add("has-notion-props");
