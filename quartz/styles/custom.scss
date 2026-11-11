@@ -928,16 +928,27 @@ ul.section-ul li.section-li {
     color: var(--ink-faint) !important;
   }
 
-  #toc-content {
-    font-size: 0.79rem !important;
-    li { margin: 0.1rem 0 !important; }
+  #toc-content,
+  .toc-content {
+    font-size: 12.5px !important;
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0.4rem 0 0 0 !important;
+    li { margin: 2px 0 !important; }
+    li.depth-1 { padding-left: 12px !important; }
+    li.depth-2 { padding-left: 22px !important; }
     a {
+      font-weight: 400 !important;
       color: var(--ink-faint) !important;
       line-height: 1.5 !important;
       word-break: keep-all !important;
+      background: none !important;
       &:hover { color: var(--ink) !important; }
     }
-    .in-view { color: var(--ink) !important; }
+    .in-view {
+      color: var(--ink) !important;
+      font-weight: 500 !important;
+    }
   }
 }
 
@@ -1455,8 +1466,8 @@ article .markdown-preview-view > *:first-child {
    이제 우측에 '문서 정보' 패널(프론트매터 기반)이 들어가므로
    사이드바는 유지하고, 비어 있는 목차 블록만 접는다. */
 @media all and #{$desktop} {
-  /* 목차에 항목이 없으면 목차 블록만 숨긴다 (사이드바는 유지) */
-  .sidebar.right .toc:not(:has(#toc-content li)) {
+  /* 목차에 항목이 없으면 목차 블록만 숨긴다 (Quartz v5 .toc-content 호환) */
+  .sidebar.right .toc:not(:has(#toc-content li, .toc-content li:not(.overflow-end))) {
     display: none !important;
   }
 
@@ -2567,23 +2578,28 @@ article .notion-callout li:last-child {
 
 .table-scroll > table {
   width: 100% !important;
-  min-width: max-content !important;
+  min-width: 100% !important;
   border-collapse: collapse !important;
   border: 1px solid var(--n-border) !important;
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   line-height: 1.45 !important;
 }
 
-.table-scroll thead th {
+.table-scroll thead th,
+.table-scroll thead th:not(:first-child) {
   background-color: var(--n-gray-bg) !important;
   color: var(--ink) !important;
   font-weight: 500 !important;
-  font-size: 13.5px !important;
-  padding: 7px 10px !important;
+  font-size: 13px !important;
+  padding: 7px 9px !important;
   border: 1px solid var(--n-border) !important;
   text-align: left !important;
   white-space: nowrap !important;
   box-shadow: none !important;
+}
+
+.table-scroll thead th.num {
+  text-align: right !important;
 }
 
 .table-scroll thead th:first-child {
@@ -2594,11 +2610,13 @@ article .notion-callout li:last-child {
   box-shadow: 1px 0 0 var(--n-border) !important;
 }
 
-.table-scroll tbody td {
-  padding: 6.5px 10px !important;
+.table-scroll tbody td,
+.table-scroll tbody td:not(:first-child) {
+  padding: 6.5px 9px !important;
   border: 1px solid var(--n-border) !important;
   color: var(--ink) !important;
   background-color: var(--n-bg) !important;
+  text-align: left !important;
 }
 
 .table-scroll tbody td:first-child {
@@ -2621,7 +2639,7 @@ article .notion-callout li:last-child {
 .table-scroll tbody td.txt {
   text-align: left !important;
   white-space: normal !important;
-  max-width: 320px !important;
+  max-width: none !important;
   word-break: keep-all !important;
 }
 
@@ -2629,6 +2647,65 @@ article .notion-callout li:last-child {
 .table-scroll tbody tr.emph-row td:first-child {
   background-color: var(--n-gray-bg) !important;
   font-weight: 600 !important;
+}
+
+/* 2열 제품 실물·공식 영상 쇼케이스 표 (media-grid): sticky·최소폭 해제 + 16:9 균등 2열 배치 */
+.table-scroll:has(> table.media-grid) {
+  overflow-x: hidden !important;
+  margin: 1rem 0 1.25rem !important;
+}
+
+.table-scroll > table.media-grid {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: fixed !important;
+}
+
+.table-scroll > table.media-grid thead th,
+.table-scroll > table.media-grid thead th:first-child {
+  position: static !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  white-space: normal !important;
+  font-size: 13px !important;
+  padding: 6px 10px !important;
+}
+
+.table-scroll > table.media-grid tbody td,
+.table-scroll > table.media-grid tbody td:first-child {
+  position: static !important;
+  box-shadow: none !important;
+  width: 50% !important;
+  max-width: none !important;
+  white-space: normal !important;
+  padding: 8px !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+.table-scroll > table.media-grid tbody td img,
+.table-scroll > table.media-grid tbody td iframe,
+.table-scroll > table.media-grid tbody td video {
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border: none !important;
+  border-radius: 3px !important;
+}
+
+@media (max-width: 640px) {
+  .table-scroll > table.media-grid,
+  .table-scroll > table.media-grid thead,
+  .table-scroll > table.media-grid tbody,
+  .table-scroll > table.media-grid tr,
+  .table-scroll > table.media-grid th,
+  .table-scroll > table.media-grid td {
+    display: block !important;
+    width: 100% !important;
+  }
 }
 
 /* 표 하단 기준 각주 & 차트 캡션 */
@@ -2675,6 +2752,32 @@ button.share-link-btn {
   &:hover {
     background: var(--n-gray-bg) !important;
   }
+}
+
+/* 우측 TOC 미니멀 무테두리 Notion 스타일 (테두리 상자·스크롤바·말줄임 잘림 제거) */
+.sidebar.right .toc {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 0 0 12px !important;
+  border-left: 1px solid var(--n-border) !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+.sidebar.right .toc .toc-content,
+.sidebar.right .toc #toc-content {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.sidebar.right .toc .toc-content a,
+.sidebar.right .toc #toc-content a {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: block !important;
+  padding: 2px 0 !important;
+  line-height: 1.45 !important;
 }
 
 /* ?share=1 단독 공유 뷰: 좌우 사이드바·탐색기·경로·푸터를 모두 숨기고 순정 Notion 페이지처럼 정중앙 배치 */

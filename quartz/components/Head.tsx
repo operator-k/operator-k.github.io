@@ -456,22 +456,59 @@ export default (() => {
                     }
                   }
 
-                  // 4) 표 숫자열(우측 정렬) vs 설명열(좌측 정렬) 자동 분류 및 요약/목표 행 강조 (백슬래시 없이 문자 클래스만 사용)
-                  var numRe = /^[+-]?[0-9,.]+[%xX배대억만B]?$|^(?:N[/]A|-)$|^[+-]?[0-9,.]+ *(?:USD|RMB|HKD|KRW|원|배|억 *USD|B *RMB|B *USD|M *USD)(?: *[(][^)]+[)])?$|^(?:P[/]S|EV[/]S|P[/]E) *[0-9.]+x$/;
+                  // 3.5) 마크다운 유튜브 이미지 문법 ![캡션](https://www.youtube.com/watch?v=...) -> 반응형 iframe 변환 (표 내부 포함)
+                  var allImgs = article.querySelectorAll("img");
+                  for (var yi = 0; yi < allImgs.length; yi++) {
+                    var yImg = allImgs[yi];
+                    var ySrc = yImg.getAttribute("src") || "";
+                    var vIdx = ySrc.indexOf("youtube.com/watch?v=");
+                    var shortIdx = ySrc.indexOf("youtu.be/");
+                    var vid = "";
+                    if (vIdx !== -1) {
+                      vid = ySrc.substring(vIdx + 20).split("&")[0].split("#")[0];
+                    } else if (shortIdx !== -1) {
+                      vid = ySrc.substring(shortIdx + 9).split("?")[0].split("#")[0];
+                    }
+                    if (vid) {
+                      var ifr = document.createElement("iframe");
+                      ifr.src = "https://www.youtube.com/embed/" + vid;
+                      ifr.title = yImg.getAttribute("alt") || "YouTube video";
+                      ifr.setAttribute("frameborder", "0");
+                      ifr.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+                      ifr.setAttribute("allowfullscreen", "true");
+                      ifr.className = "yt-embed-frame";
+                      yImg.parentNode.replaceChild(ifr, yImg);
+                    }
+                  }
+
+                  // 4) 미디어 2열 쇼케이스 표(media-grid) 분리 및 일반 숫자/텍스트 표 정렬·요약행 강조 (백슬래시 금지)
+                  var numRe = /^[+-]?[0-9,.]+[%xX배대억만B]?$|^(?:N[/]A|N[/]M|-)$|^[+-]?[0-9,.]+ *(?:USD|RMB|HKD|KRW|원|배|억 *USD|B *RMB|B *USD|M *USD)(?: *[(][^)]+[)])?$|^(?:P[/]S|EV[/]S|P[/]E|부문) *[0-9.]+x$/;
                   var allTables = article.querySelectorAll("table");
                   for (var ti = 0; ti < allTables.length; ti++) {
                     var tb = allTables[ti];
+                    var tbBody = tb.querySelector("tbody");
+                    var hasMedia = tbBody && tbBody.querySelector("td img, td iframe, td video") !== null;
+                    var bodyPlain = tbBody ? (tbBody.textContent || "").trim() : "";
+                    if (hasMedia && bodyPlain.length === 0) {
+                      tb.classList.add("media-grid");
+                      continue;
+                    }
+                    var headThs = tb.querySelectorAll("thead th");
                     var rows = tb.querySelectorAll("tbody tr");
                     for (var ri = 0; ri < rows.length; ri++) {
                       var tr = rows[ri];
                       var rowText = tr.textContent || "";
-                      if (rowText.indexOf("목표 (Base)") !== -1 || rowText.indexOf("연결 합계") !== -1 || rowText.indexOf("전사 매출액 합계") !== -1) {
+                      if (rowText.indexOf("목표 (Base)") !== -1 || rowText.indexOf("목표주가 합계") !== -1 || rowText.indexOf("연결 합계") !== -1 || rowText.indexOf("전사 매출액 합계") !== -1) {
                         tr.classList.add("emph-row");
                       }
                       var cells = tr.querySelectorAll("td");
                       for (var ci = 1; ci < cells.length; ci++) {
                         var cellTxt = cells[ci].textContent.trim();
-                        cells[ci].classList.add(numRe.test(cellTxt) ? "num" : "txt");
+                        var isNum = numRe.test(cellTxt);
+                        cells[ci].classList.add(isNum ? "num" : "txt");
+                        if (ri === 0 && headThs[ci]) {
+                          headThs[ci].classList.add(isNum ? "num" : "txt");
+                        }
                       }
                     }
                   }
