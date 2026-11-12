@@ -404,9 +404,10 @@ export default (() => {
                         var propsDiv = document.createElement("div");
                         propsDiv.className = "n-props";
                         var rowsHtml = "";
-                        var upsideVal = colUpside ? (map[colUpside] || "") : "";
+                        var targetVal = (map[colTarget] || "-").replace(/[ ]*[(]강세[^)]*[)]/g, "").trim();
+                        var upsideVal = colUpside ? (map[colUpside] || "").replace(/[ ]*[(]강세[^)]*[)]/g, "").trim() : "";
                         var upsideHtml = upsideVal ? (' · <span class="n-pill">' + upsideVal + "</span>") : "";
-                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">적정가치(Base)</div><div class="n-prop-val">' + (map[colTarget] || "-") + upsideHtml + "</div></div>";
+                        rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">적정가치(Base)</div><div class="n-prop-val">' + targetVal + upsideHtml + "</div></div>";
                         rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">현재가 · 시가총액</div><div class="n-prop-val">' + (map[colPrice] || "-") + (colMcap && map[colMcap] ? " · " + map[colMcap] : "") + (multVal ? " · " + multVal : "") + "</div></div>";
                         if (dateStr || (colMom && map[colMom])) {
                           rowsHtml += '<div class="n-prop-row"><div class="n-prop-key">작성일 · 일정</div><div class="n-prop-val">' + dateStr + (colMom && map[colMom] ? " (" + map[colMom] + ")" : "") + "</div></div>";
@@ -534,7 +535,37 @@ export default (() => {
                       continue;
                     }
                     var headThs = tb.querySelectorAll("thead th");
+                    if (headThs[0]) {
+                      var h0Align = (headThs[0].getAttribute("align") || headThs[0].style.textAlign || "").toLowerCase();
+                      if (h0Align !== "center") headThs[0].style.textAlign = "left";
+                    }
                     var rows = tb.querySelectorAll("tbody tr");
+                    var colModes = [];
+                    var allCenter = headThs.length > 1;
+                    for (var ci = 1; ci < headThs.length; ci++) {
+                      var hAlign = (headThs[ci].getAttribute("align") || headThs[ci].style.textAlign || "").toLowerCase();
+                      if (hAlign === "center" || hAlign === "right" || hAlign === "left") {
+                        colModes[ci] = hAlign === "center" ? "col-center" : (hAlign === "right" ? "col-right" : "col-left");
+                      } else {
+                        var allNum = true;
+                        for (var rj = 0; rj < rows.length; rj++) {
+                          var cCell = rows[rj].querySelectorAll("td")[ci];
+                          var vTxt = cCell ? cCell.textContent.trim() : "";
+                          if (vTxt && vTxt !== "-" && vTxt !== "N/A" && vTxt !== "N/M" && !numRe.test(vTxt)) {
+                            allNum = false;
+                            break;
+                          }
+                        }
+                        colModes[ci] = allNum ? "col-center" : "col-left";
+                      }
+                      headThs[ci].classList.add(colModes[ci]);
+                      if (colModes[ci] !== "col-center") allCenter = false;
+                    }
+                    if (allCenter && headThs.length === 5) {
+                      tb.classList.add("equal-5col");
+                    } else if (allCenter && headThs.length === 8) {
+                      tb.classList.add("equal-8col");
+                    }
                     for (var ri = 0; ri < rows.length; ri++) {
                       var tr = rows[ri];
                       var rowText = tr.textContent || "";
@@ -542,13 +573,12 @@ export default (() => {
                         tr.classList.add("emph-row");
                       }
                       var cells = tr.querySelectorAll("td");
-                      for (var ci = 1; ci < cells.length; ci++) {
-                        var cellTxt = cells[ci].textContent.trim();
-                        var isNum = numRe.test(cellTxt);
-                        cells[ci].classList.add(isNum ? "num" : "txt");
-                        if (ri === 0 && headThs[ci]) {
-                          headThs[ci].classList.add(isNum ? "num" : "txt");
-                        }
+                      if (cells[0]) {
+                        var c0Align = (cells[0].getAttribute("align") || cells[0].style.textAlign || "").toLowerCase();
+                        if (c0Align !== "center") cells[0].style.textAlign = "left";
+                      }
+                      for (var ci2 = 1; ci2 < cells.length; ci2++) {
+                        cells[ci2].classList.add(colModes[ci2] || "col-left");
                       }
                     }
                   }
